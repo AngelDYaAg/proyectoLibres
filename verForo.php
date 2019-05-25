@@ -1,3 +1,18 @@
+<?php
+$errores = '';
+
+
+if(isset($_POST['submit'])){
+  $comentario = $_POST['inputComentario'];
+
+  if (!empty($comentario)) {
+    $comentario = trim($comentario);
+  } else {
+    $errores .= 'ingrese el comentario <br />';
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +22,7 @@
   ?>
 </head>
 
-<body class="bg-dark">
+<body>
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -28,12 +43,19 @@
             <td></td>
           </tr>
         </table>
-        <div class="form-group">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+          <div class="form-group">
             <label for="inputComentario">comentario</label>
-            <textarea class="form-control" rows="5" id="inputComentario" required></textarea>
+            <textarea class="form-control" rows="5" id="inputComentario" name="inputComentario"></textarea>
           </div>
-        <button type="button">comentar</button>
-        <a class="btn btn-danger" href="foro.php" role="button">cerrar</a>
+          <?php if(!empty($errores)): ?>
+            <div class="alert error">
+              <?php echo $errores; ?>
+            </div>
+          <?php endif ?>
+          <input class="btn btn-primary btn-block" type="submit" name="submit" value="Comentar">
+          <a class="btn btn-danger" href="foro.php" role="button">cerrar</a>
+        </form>
       </div>
     </div>
   </div>
