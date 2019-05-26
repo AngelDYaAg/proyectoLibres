@@ -31,10 +31,16 @@ if(isset($_POST['submit'])){
     }else{
       foreach ($resultado as $user) {
         $pass = $user["PASSWORD"];
+        $cedula = $user["CEDULAUSUARIO"];
       }
       if(strcmp ($pass , $password ) == 0){
         $_SESSION['usuario']=$usuario;
-        header('Location: repositorio.php');
+        $cedula = substr($cedula, -4);
+        if(strcmp ($cedula , $password ) == 0){
+          header('Location: cambiarPassword.php');
+        }else{
+          header('Location: repositorio.php');
+        }
       }else{
         $errores .='usuario o contraseña incorrectas';
       }
