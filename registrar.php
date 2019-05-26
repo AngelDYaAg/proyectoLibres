@@ -1,4 +1,8 @@
-<?php
+<?php session_start();
+if(isset($_SESSION['usuario'])){
+  header('Location: repositorio.php');
+}
+require "conexion.php";
 $errores = '';
 $noPermitidos = "0123456789";
 
@@ -7,6 +11,11 @@ if(isset($_POST['submit'])){
   $nombres = $_POST['inputNombres'];
   $apellidos = $_POST['inputApellidos'];
   $tipo = $_POST['userType'];
+  $user = str_replace(' ', '', $nombres);
+  $user .= str_replace(' ', '', $apellidos);
+  $password = substr($cedula, -4);
+  $carpeta = "archivos/$user";
+  $estado = 'activo';
 
   if (!empty($cedula)) {
     $cedula = trim($cedula);
@@ -39,6 +48,33 @@ if(isset($_POST['submit'])){
   } else {
     $errores .= 'ingrese los apellidos';
   }
+
+  if (empty($errores)) {
+    $statement = $conexion->prepare('SELECT * FROM usuario WHERE USER LIKE :user and TIPOUSUARIO LIKE :type');
+    $statement->execute(array(':user' => $user, ':type' => $tipo));
+    $resultado = $statement->fetchAll();
+    if (empty($resultado)) {
+      if (!is_dir($carpeta)) {
+        mkdir($carpeta, 0777, true);
+      }
+      $statement = $conexion->prepare('SELECT COUNT(IDUSUARIO) AS id FROM usuario');
+      $statement->execute();
+      $resultado = $statement->fetchAll();
+      foreach ($resultado as $id) {
+        $idusuario = (integer)$id["id"];
+      }
+      $idusuario ++;
+      $statement = $conexion->prepare('INSERT INTO usuario(IDUSUARIO, CEDULAUSUARIO, NOMBRESUSUARIO, APELLIDOSUSUARIO, TIPOUSUARIO, USER, PASSWORD, RUTAUSUARIO, ESTADOUSUARIO) VALUES (:idusuario,:cedula,:nombres,:apellidos,:tipo,:user,:password,:carpeta,:estado)');
+      $statement->execute(array(':idusuario'=>$idusuario,':cedula'=>$cedula,':nombres'=>$nombres,':apellidos'=>$apellidos,':tipo'=>$tipo,':user'=>$user,':password'=>$password,':carpeta'=>$carpeta,':estado'=>$estado));
+
+      $destinatario = 'angel_0930@hotmail.es';
+      $asunto = 'credenciales P-DIRA';
+      $carta = "Usuario: $user \n";
+      $carta .= "Contraseña: $password";
+
+      mail($destinatario, $asunto, $carta);
+    }
+  }
 }
 ?>
 
@@ -68,8 +104,8 @@ if(isset($_POST['submit'])){
       </div>
       <div class="form-group">
         <select class="form-control" id="userType" name="userType">
-          <option value="prof">Profesor</option>
-          <option value="est">Estudiante</option>
+          <option value="profesor">Profesor</option>
+          <option value="estudiante">Estudiante</option>
         </select>
       </div>
       <?php if(!empty($errores)): ?>

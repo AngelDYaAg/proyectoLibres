@@ -1,3 +1,8 @@
+<?php session_start();
+  if (isset($_SESSION['usuario'])) {
+    header('Location: repositorio.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +12,10 @@
   ?>
 </head>
 
-<body class="bg-dark">
+<body>
+  <div id="imagen" class="container">
+    <img id="estirada" src="EPN.png" />
+  </div>
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">CENTRO DE APRENDIZAJE COLABORATIVO – EPN</div>

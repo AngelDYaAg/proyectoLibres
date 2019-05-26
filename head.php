@@ -16,4 +16,13 @@
 	table, tr, td {
 		border: solid black 1px;
 	}
+	body{
+		background-color: #B1B4B6; 
+	}
+	#imagen{
+		text-align: center;
+	}
+	#estirada{
+		width: 300px;
+	}
 </style>

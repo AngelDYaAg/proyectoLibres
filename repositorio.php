@@ -1,3 +1,8 @@
+<?php session_start();
+if(!isset($_SESSION['usuario'])){
+  header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +14,9 @@
 
 <body class="bg-dark">
   <div class="container">
+    <div class="row" style="text-align: right;">
+      <a class="btn btn-link" href="cerrarSesion.php" role="button">cerrar sesion</a>
+    </div>
     <div class="row">
       <div class="col-sm-4">
         <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
