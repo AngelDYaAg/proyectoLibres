@@ -14,7 +14,7 @@
 		background-color: gray;
 	}
 	table, tr, td {
-		border: solid black 1px;
+		border: solid black 2px;
 	}
 	body{
 		background-color: #B1B4B6; 
@@ -24,5 +24,8 @@
 	}
 	#estirada{
 		width: 300px;
+	}
+	td{
+		text-align: center;
 	}
 </style>

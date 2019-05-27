@@ -2,6 +2,8 @@
 if(!isset($_SESSION['usuario'])){
   header('Location: index.php');
 }
+
+require 'conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +29,7 @@ if(!isset($_SESSION['usuario'])){
       </div>
       <div class="col-sm-8">
         <a class="btn btn-primary" href="buscar.php" role="button">Buscar</a>
+        <a class="btn btn-primary" href="nuevoRecurso.php" role="button">Nuevo recurso</a>
       </form>
       <table>
         <tr>
@@ -41,7 +44,51 @@ if(!isset($_SESSION['usuario'])){
           <td><strong>Fecha ingreso</strong></td>
           <td><strong>Opciones</strong></td>
         </tr>
-        <tr>
+        <?php
+          $statement = $conexion->query("SELECT NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado'");
+          foreach ($statement as $id) {
+            $NOMBRERECURSO = $id["NOMBRERECURSO"];
+            $DESCRIPCIONRECURSO = $id["DESCRIPCIONRECURSO"];
+            $TIPORECURSO = $id["TIPORECURSO"];
+            $AUTORRECURSO = $id["AUTORRECURSO"];
+            $INSTAUTORRECURSO = $id["INSTAUTORRECURSO"];
+            $FECHACREACIONRECURSO = $id["FECHACREACIONRECURSO"];
+            $SIZERECURSO = $id["SIZERECURSO"];
+            $TIPOARCHIVO = $id["TIPOARCHIVO"];
+            $FECHACREACIONRECURSO = $id["FECHACREACIONRECURSO"];
+
+
+            echo "<tr>";
+            echo "<td>$NOMBRERECURSO</td>";
+            echo "<td>$DESCRIPCIONRECURSO</td>";
+            echo "<td>$TIPORECURSO</td>";
+            echo "<td>$AUTORRECURSO</td>";
+            echo "<td>$INSTAUTORRECURSO</td>";
+            echo "<td>$FECHACREACIONRECURSO</td>";
+            echo "<td>$SIZERECURSO</td>";
+            echo "<td>$TIPOARCHIVO</td>";
+            echo "<td>$FECHACREACIONRECURSO</td>";
+            echo '<td>              
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+              </ul>
+              <button type="button" class="btn btn-success">Publicar</button>
+              <button type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+          </td>';
+            echo "</tr>";
+
+          }
+          ?>
+        <!-- <tr>
           <td></td>
           <td></td>
           <td></td>
@@ -67,7 +114,7 @@ if(!isset($_SESSION['usuario'])){
               <button type="button" class="btn btn-danger">Eliminar</button>
             </div>
           </td>
-        </tr>
+        </tr> -->
       </table>
     </div>
   </div>
