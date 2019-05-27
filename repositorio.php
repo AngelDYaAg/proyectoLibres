@@ -4,6 +4,12 @@ if(!isset($_SESSION['usuario'])){
 }
 
 require 'conexion.php';
+$usuario=$_SESSION['usuario'];
+$statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$usuario'");
+foreach ($statement as $id) {
+$usuario=(integer)$id['IDUSUARIO'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +51,9 @@ require 'conexion.php';
           <td><strong>Opciones</strong></td>
         </tr>
         <?php
-          $statement = $conexion->query("SELECT NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado'");
+          $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND IDUSUARIO = $usuario");
           foreach ($statement as $id) {
+            $IDREPOSITORIO = $id["IDREPOSITORIO"];
             $NOMBRERECURSO = $id["NOMBRERECURSO"];
             $DESCRIPCIONRECURSO = $id["DESCRIPCIONRECURSO"];
             $TIPORECURSO = $id["TIPORECURSO"];
@@ -68,53 +75,26 @@ require 'conexion.php';
             echo "<td>$SIZERECURSO</td>";
             echo "<td>$TIPOARCHIVO</td>";
             echo "<td>$FECHACREACIONRECURSO</td>";
-            echo '<td>              
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-              </ul>
-              <button type="button" class="btn btn-success">Publicar</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-          </td>';
+            echo '<td>';             
+            echo '<div class="dropdown">';
+            echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar';
+            echo '<span class="caret"></span>';
+            echo '</button>';
+            echo '<ul class="dropdown-menu">';
+            echo '<li><a href="#">1</a></li>';
+            echo '<li><a href="#">2</a></li>';
+            echo '<li><a href="#">3</a></li>';
+            echo '<li><a href="#">4</a></li>';
+            echo '<li><a href="#">5</a></li>';
+            echo '</ul>';
+            echo '<a class="btn btn-success" href="publicar.php?idpublicar='.$IDREPOSITORIO.'">Publicar</a>';
+            echo '<a class="btn btn-danger" href="eliminar.php?no='.$IDREPOSITORIO.'">Eliminar</a>';
+            echo '</div>';
+            echo '</td>';
             echo "</tr>";
 
           }
           ?>
-        <!-- <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>              
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-              </ul>
-              <button type="button" class="btn btn-success">Publicar</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-          </td>
-        </tr> -->
       </table>
     </div>
   </div>
