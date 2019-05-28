@@ -14,7 +14,7 @@ if(!isset($_SESSION['usuario'])){
 
 <body class="bg-dark">
   <div class="container">
-    <form>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="form-group">
         <label for="inputAutor">Autor</label>
         <input type="text" class="form-control" id="inputAutor" placeholder="ingrese autor">
@@ -24,11 +24,18 @@ if(!isset($_SESSION['usuario'])){
         <input type="date" class="form-control" id="inputAño">
       </div>
       <div class="form-group">
-        <label for="inputMateria">Materia</label>
-        <select class="form-control" id="inputMateria" name="inputMateria">
-          <option value="admin"></option>
-          <option value="prof">Profesor</option>
-          <option value="est">Estudiante</option>
+        <label for="materia">Materia</label>
+        <select class="form-control" id="materia" name="materia">
+          <?php
+          $statement = $conexion->prepare('SELECT IDMATERIA, NOMBREMATERIA FROM materia');
+          $statement->execute();
+          $resultado = $statement->fetchAll();
+          foreach ($resultado as $id) {
+            $IDMATERIA = $id["IDMATERIA"];
+            $NOMBREMATERIA = $id["NOMBREMATERIA"];
+            echo "<option value=$IDMATERIA>$NOMBREMATERIA</option>";
+          }
+          ?>
         </select>
       </div>
       <div class="form-group">
