@@ -88,6 +88,7 @@ $usuario=(integer)$id['IDUSUARIO'];
             echo '<li><a href="#">5</a></li>';
             echo '</ul>';
             echo '<a class="btn btn-success" href="publicar.php?idpublicar='.$IDREPOSITORIO.'">Publicar</a>';
+            echo '<a class="btn btn-warning" href="descargar.php?iddescargar='.$IDREPOSITORIO.'">Descargar</a>';
             echo '<a class="btn btn-danger" href="eliminar.php?no='.$IDREPOSITORIO.'">Eliminar</a>';
             echo '</div>';
             echo '</td>';
