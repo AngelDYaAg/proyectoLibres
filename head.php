@@ -10,6 +10,39 @@
 	/*.container{
 		background-color: white;
 	}*/
+
+	#fondoindex{
+	
+	margin: 10;
+    padding: 0;
+    padding-top: 50px;
+  
+   
+   background-size: cover;
+   background-image: url(ImagesCSS/fondoindex.jpg);
+	}
+
+
+.texto{
+	 padding-left: 200px;
+	  padding-right: 200px;
+  font-style: italic;
+   color: #000;
+   float:right;
+   position:relative;
+}
+.opacity{
+   background-color:rgb(2,0,0);
+   opacity: 0.1;
+     padding: 10px;
+   width:740px;
+   height:90px;
+   position:absolute;
+   top:0px;
+}
+
+
+
 	.col-sm-4{
 		background-color: gray;
 	}
@@ -23,7 +56,7 @@
 		text-align: center;
 	}
 	#estirada{
-		width: 300px;
+		width: 250px;
 	}
 	td{
 		text-align: center;
