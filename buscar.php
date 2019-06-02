@@ -15,10 +15,8 @@ if(!isset($_SESSION['usuario'])){
 
 <body id="fondonuevorepositorio">
   <div class="containerRepositorioNuevo">
-    <form>
-
-
- <!-- <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"> -->
+   
+ <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"> 
 
       <div class="form-group">
         <label for="inputAutor">Autor</label>

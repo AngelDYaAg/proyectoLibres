@@ -15,20 +15,20 @@ if(isset($_POST['submit'])){
   if (!empty($password)) {
     $password = trim($password);
   } else {
-    $errores .= 'ingrese una contraseña <br />';
+    $errores .= 'Ingrese una contraseña <br />';
   }
 
   if (!empty($password1)) {
     $password1 = trim($password1);
   } else {
-    $errores .= 'ingrese una contraseña';
+    $errores .= 'Ingrese una contraseña';
   }
 
   if(empty($errores)){
     $statement->execute(array(':user' => $user));
     $resultado = $statement->fetchAll();
     if (empty($resultado)) {
-      $errores .='no existe el usuario';
+      $errores .='No existe el usuario';
     }else{
       foreach ($resultado as $user) {
         $id = (integer)$user["id"];
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
         $statement->execute(array(':pass' => $password, ':id'=>$id));
         header('Location: repositorio.php');
       }else{
-        $errores .='las contraseñas no coinciden';
+        $errores .='Las contraseñas no coinciden';
       }
     }
   }
@@ -55,12 +55,13 @@ if(isset($_POST['submit'])){
   ?>
 </head>
 
-<body>
-  <div class="container">
+<body id="fondonuevorepositorio">
+  <div class="containerLogininicio">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="form-group">
-        <h1>cambio de Contraseña</h1>
+        <h1 align="center">Cambio de Contraseña</h1>
       </div>
+      <br>
       <div class="form-group">
         <label for="inputPW">Nueva contraseña</label>
         <input class="form-control" id="inputPW" name="inputPW" type="password" placeholder="Ingresar Contraseña">
@@ -71,12 +72,14 @@ if(isset($_POST['submit'])){
       </div>
 
       <?php if(!empty($errores)): ?>
-      <div class="alert error">
-        <?php echo $errores; ?>
-      </div>
+        <div class="alert-error">
+          <?php echo $errores; ?>
+        </div>
       <?php endif ?>
-
+      <br>
+      <div class="containerLogininicio2">
       <input type="submit" class="btn btn-success btn-block" name="submit" value="Cambiar Contraseña">
+      </div>
     </form>
   </div>
 </body>
