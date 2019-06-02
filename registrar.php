@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
       $errores .= 'solo se permiten numeros en la cedula <br />';
     } 
   } else {
-    $errores .= 'ingrese su numero de cedula <br />';
+    $errores .= 'Ingrese su numero de cedula <br />';
   }
 
   if (!empty($nombres)) {
@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
       }
     } 
   } else {
-    $errores .= 'ingrese los nombres <br />';
+    $errores .= 'Ingrese los nombres <br />';
   }
   if (!empty($apellidos)) {
     $apellidos = trim($apellidos);
@@ -46,7 +46,7 @@ if(isset($_POST['submit'])){
       }
     } 
   } else {
-    $errores .= 'ingrese los apellidos';
+    $errores .= 'Ingrese los apellidos';
   }
 
   if (empty($errores)) {
@@ -87,8 +87,8 @@ if(isset($_POST['submit'])){
   ?>
 </head>
 
-<body>
-  <div class="container">
+<body id="fondonuevorepositorio">
+  <div class="containerLogininicio">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="form-group">
         <label for="inputCedula">Cedula</label>
@@ -109,12 +109,16 @@ if(isset($_POST['submit'])){
         </select>
       </div>
       <?php if(!empty($errores)): ?>
-        <div class="alert error">
+        <div class="alert-error">
           <?php echo $errores; ?>
         </div>
       <?php endif ?>
+      <br>
+      <div class="containerLogininicio2">
       <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrarse">
+      <br>
       <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
+      </div>
     </form>
   </div>
 </body>

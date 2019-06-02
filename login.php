@@ -14,20 +14,20 @@ if(isset($_POST['submit'])){
   if (!empty($usuario)) {
     $usuario = trim($usuario);
   } else {
-    $errores .= 'ingrese un usuario <br />';
+    $errores .= 'Ingrese un usuario <br />';
   }
 
   if (!empty($password)) {
     $password = trim($password);
   } else {
-    $errores .= 'ingrese una contraseña';
+    $errores .= 'Ingrese una contraseña';
   }
 
   if(empty($errores)){
     $statement->execute(array(':user' => $usuario, ':type' => $tipo));
     $resultado = $statement->fetchAll();
     if (empty($resultado)) {
-      $errores .='usuario o contraseña incorrectas';
+      $errores .='Usuario o contraseña incorrectas';
     }else{
       foreach ($resultado as $user) {
         $pass = $user["PASSWORD"];
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
           header('Location: repositorio.php');
         }
       }else{
-        $errores .='usuario o contraseña incorrectas';
+        $errores .='Usuario o contraseña incorrectas';
       }
     }
   }
@@ -59,8 +59,8 @@ if(isset($_POST['submit'])){
   ?>
 </head>
 
-<body>
-  <div class="container">
+<body id="fondologin">
+  <div class="containerLogininicio">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="form-group">
         <select class="form-control" id="userType" name="userType">
@@ -70,23 +70,33 @@ if(isset($_POST['submit'])){
         </select>
       </div>
       <div class="form-group">
-        <label for="inputUser">Usuario</label>
+        <br>
+        <label for="inputUser" class="usuarioLogin">Usuario</label>
         <input class="form-control" id="inputUser" name="inputUser" type="text" placeholder="Ingresar Usuario">
       </div>
       <div class="form-group">
-        <label for="inputPW">Contraseña</label>
+        <br>
+        <label for="inputPW" class="usuarioLogin">Contraseña</label>
         <input class="form-control" id="inputPW" name="inputPW" type="password" placeholder="Ingresar Contraseña">
       </div>
 
       <?php if(!empty($errores)): ?>
-        <div class="alert error">
-          <?php echo $errores; ?>
-        </div>
-      <?php endif ?>
 
-      <input type="submit" class="btn btn-success btn-block" name="submit" value="Iniciar Sesion">
-      <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
-    </form>
+          <div class="alert-error">
+            <?php echo $errores; ?>
+          </div>
+        <?php endif ?>
+      
+      <br>
+      <br>
+      <div class="containerLogininicio2">
+        <input type="submit" class="btn btn-success btn-block" name="submit" value="Iniciar Sesion">
+        <br>
+        <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
+
+      </form>
+
+    </div>
   </div>
 </body>
 

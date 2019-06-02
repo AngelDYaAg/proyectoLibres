@@ -129,8 +129,8 @@ if(isset($_POST['submit'])){
 	?>
 </head>
 
-<body>
-	<div class="container">
+<body id="fondonuevorepositorio">
+	<div class="containerRepositorioNuevo">
 		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="nombre">Nombre</label>
@@ -149,22 +149,22 @@ if(isset($_POST['submit'])){
 				<input class="form-control" id="institucion" name="institucion" type="text" placeholder="Ingresar institucion">
 			</div>
 			<div class="form-group">
-				<label for="palabras">palabras claves</label>
+				<label for="palabras">Palabras claves</label>
 				<input class="form-control" id="palabras" name="palabras" type="text" placeholder="Ingresar palabras">
 			</div>
 			<div class="form-group">
-				<label for="fecha">fecha de creacion</label>
+				<label for="fecha">Fecha de creación</label>
 				<input type="date" class="form-control" id="fecha" name="fecha">
 			</div>
 			<div class="form-group">
-				<label for="tipo">tipo de recurso</label>
+				<label for="tipo">Tipo de recurso</label>
 				<select class="form-control" id="tipo" name="tipo">
-					<option value="archivo">archivo</option>
-					<option value="link">link</option>
+					<option value="archivo">Archivo</option>
+					<option value="link">Link</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="materia">materia</label>
+				<label for="materia">Materia</label>
 				<select class="form-control" id="materia" name="materia">
 					<?php
 					$statement = $conexion->prepare('SELECT IDMATERIA, NOMBREMATERIA FROM materia');
@@ -178,19 +178,27 @@ if(isset($_POST['submit'])){
 					?>
 				</select>
 			</div>
+
 			<div class="form-group">
-				<input class="form-control" id="inputArchivo" name="inputArchivo" type="file">
+				<input class="form-control" id="inputArchivo" name="inputArchivo" type="file" size=4>
 			</div>
+			<br>
 			<div class="form-group">
 				<input class="form-control" id="inputLink" name="inputLink" type="text" placeholder="Ingresar link">
 			</div>
+
 			<?php if(!empty($errores)): ?>
-				<div class="alert error">
+				<div class="alert-error2">
 					<?php echo $errores; ?>
 				</div>
 			<?php endif ?>
+
+			<div class="containerRepositorioNuevo2">
+				<br>
 			<input class="btn btn-primary btn-block" type="submit" name="submit" value="Crear">
+			<br>
 			<a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
+			</div>
 		</form>
 	</div>
 </body>
