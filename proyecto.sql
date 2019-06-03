@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2019 a las 01:32:46
+-- Tiempo de generación: 03-06-2019 a las 02:31:42
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -79,6 +79,30 @@ CREATE TABLE `foro` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `lista`
+--
+
+CREATE TABLE `lista` (
+  `ID` int(11) NOT NULL,
+  `NOMBRES` char(100) NOT NULL,
+  `APELLIDOS` char(100) NOT NULL,
+  `CORREO` char(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `lista`
+--
+
+INSERT INTO `lista` (`ID`, `NOMBRES`, `APELLIDOS`, `CORREO`) VALUES
+(0, '', '', ''),
+(1, 'Angel Daniel', 'Yanez Aguiar', 'angel.yanez@epn.edu.ec'),
+(2, 'Alexandra Vanessa', 'Macas Cevallos', 'alexandra.macas@epn.edu.ec'),
+(3, 'Carol Lizeth', 'Ona Hinostroza', 'carol.ona@epn.edu.ec'),
+(4, 'Ricardo Andres', 'Ortiz Villacres', 'ricardo.ortiz02@epn.edu.ec');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `materia`
 --
 
@@ -121,13 +145,6 @@ CREATE TABLE `recurso` (
   `SIZERECURSO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `recurso`
---
-
-INSERT INTO `recurso` (`IDREPOSITORIO`, `IDUSUARIO`, `IDCALIFICACION`, `IDMATERIA`, `NOMBRERECURSO`, `DESCRIPCIONRECURSO`, `TIPORECURSO`, `AUTORRECURSO`, `INSTAUTORRECURSO`, `FECHACREACIONRECURSO`, `PALABRASCLAVERECURSO`, `ESTADORECURSO`, `RUTARECURSO`, `LINKRECURSO`, `TIPOARCHIVO`, `SIZERECURSO`) VALUES
-(1, 2, NULL, 1, 'logo EPN', 'logotipo EPN', 'archivo', 'Anonimo', 'EPN', '2019-05-27', 'logo', 'publico', 'archivos/AngelDanielYanezAguiar/EPN_logo_big.png', 'NULL', 'image/png', 58685);
-
 -- --------------------------------------------------------
 
 --
@@ -151,9 +168,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`IDUSUARIO`, `CEDULAUSUARIO`, `NOMBRESUSUARIO`, `APELLIDOSUSUARIO`, `TIPOUSUARIO`, `USER`, `PASSWORD`, `RUTAUSUARIO`, `ESTADOUSUARIO`) VALUES
-(1, '202400313', 'administrador', 'administrador', 'admin', 'admin', 'admin', NULL, 'activo'),
-(2, '202400313', 'Angel Daniel', 'Yanez Aguiar', 'estudiante', 'AngelDanielYanezAguiar', '1996', 'archivos/AngelDanielYanezAguiar', 'activo'),
-(3, '1721905006', 'Alexandra Vanessa', 'Macas Cevallos', 'profesor', 'AlexandraVanessaMacasCevallos', '1721905006', 'archivos/AlexandraVanessaMacasCevallos', 'activo');
+(1, '202400313', 'administrador', 'administrador', 'admin', 'admin', 'admin', NULL, 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -184,6 +199,12 @@ ALTER TABLE `comentario`
 --
 ALTER TABLE `foro`
   ADD PRIMARY KEY (`IDFORO`);
+
+--
+-- Indices de la tabla `lista`
+--
+ALTER TABLE `lista`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indices de la tabla `materia`

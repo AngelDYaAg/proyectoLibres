@@ -15,7 +15,7 @@
 		padding: 0;
 		padding-top: 40px;
 		background-size: cover;
-		background-image: url(ImagesCSS/fondoindex.jpg);
+		background-image: url(fondoindex.jpg);
 	}
 	#fondologin{
 

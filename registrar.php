@@ -50,29 +50,37 @@ if(isset($_POST['submit'])){
   }
 
   if (empty($errores)) {
-    $statement = $conexion->prepare('SELECT * FROM usuario WHERE USER LIKE :user and TIPOUSUARIO LIKE :type');
-    $statement->execute(array(':user' => $user, ':type' => $tipo));
-    $resultado = $statement->fetchAll();
-    if (empty($resultado)) {
-      if (!is_dir($carpeta)) {
-        mkdir($carpeta, 0777, true);
-      }
-      $statement = $conexion->prepare('SELECT COUNT(IDUSUARIO) AS id FROM usuario');
-      $statement->execute();
+    $statement = $conexion->query("SELECT CORREO FROM lista WHERE NOMBRES LIKE '$nombres' and APELLIDOS LIKE '$apellidos'");
+    $resultadolista = $statement->fetchAll();
+    foreach ($resultadolista as $mail) {
+      if (!empty($mail)) {
+      $CORREO = $mail["CORREO"];
+      $statement = $conexion->prepare('SELECT * FROM usuario WHERE USER LIKE :user and TIPOUSUARIO LIKE :type');
+      $statement->execute(array(':user' => $user, ':type' => $tipo));
       $resultado = $statement->fetchAll();
-      foreach ($resultado as $id) {
-        $idusuario = (integer)$id["id"];
+      if (empty($resultado)) {
+        if (!is_dir($carpeta)) {
+          mkdir($carpeta, 0777, true);
+        }
+        $statement = $conexion->prepare('SELECT COUNT(IDUSUARIO) AS id FROM usuario');
+        $statement->execute();
+        $resultado = $statement->fetchAll();
+        foreach ($resultado as $id) {
+          $idusuario = (integer)$id["id"];
+        }
+        $idusuario ++;
+        $statement = $conexion->prepare('INSERT INTO usuario(IDUSUARIO, CEDULAUSUARIO, NOMBRESUSUARIO, APELLIDOSUSUARIO, TIPOUSUARIO, USER, PASSWORD, RUTAUSUARIO, ESTADOUSUARIO) VALUES (:idusuario,:cedula,:nombres,:apellidos,:tipo,:user,:password,:carpeta,:estado)');
+        $statement->execute(array(':idusuario'=>$idusuario,':cedula'=>$cedula,':nombres'=>$nombres,':apellidos'=>$apellidos,':tipo'=>$tipo,':user'=>$user,':password'=>$password,':carpeta'=>$carpeta,':estado'=>$estado));
+
+        $destinatario = $CORREO;
+        $asunto = 'credenciales P-DIRA';
+        $carta = "Usuario: $user \n";
+        $carta .= "Contraseña: $password";
+
+        mail($destinatario, $asunto, $carta);
+        header('Location: index.php');
       }
-      $idusuario ++;
-      $statement = $conexion->prepare('INSERT INTO usuario(IDUSUARIO, CEDULAUSUARIO, NOMBRESUSUARIO, APELLIDOSUSUARIO, TIPOUSUARIO, USER, PASSWORD, RUTAUSUARIO, ESTADOUSUARIO) VALUES (:idusuario,:cedula,:nombres,:apellidos,:tipo,:user,:password,:carpeta,:estado)');
-      $statement->execute(array(':idusuario'=>$idusuario,':cedula'=>$cedula,':nombres'=>$nombres,':apellidos'=>$apellidos,':tipo'=>$tipo,':user'=>$user,':password'=>$password,':carpeta'=>$carpeta,':estado'=>$estado));
-
-      $destinatario = 'angel_0930@hotmail.es';
-      $asunto = 'credenciales P-DIRA';
-      $carta = "Usuario: $user \n";
-      $carta .= "Contraseña: $password";
-
-      mail($destinatario, $asunto, $carta);
+    }
     }
   }
 }
@@ -115,9 +123,9 @@ if(isset($_POST['submit'])){
       <?php endif ?>
       <br>
       <div class="containerLogininicio2">
-      <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrarse">
-      <br>
-      <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
+        <input class="btn btn-primary btn-block" type="submit" name="submit" value="Registrarse">
+        <br>
+        <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
       </div>
     </form>
   </div>
