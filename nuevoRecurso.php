@@ -8,7 +8,6 @@ $errores = '';
 $user=$_SESSION['usuario'];
 
 if(isset($_POST['submit'])){
-	$IDREPOSITORIO;
 	$IDUSUARIO;
 	$IDCALIFICACION='NULL';
 	$IDMATERIA=(integer)$_POST['materia'];
@@ -69,13 +68,6 @@ if(isset($_POST['submit'])){
 
 
 	if (empty($errores)) {
-		$statement = $conexion->prepare('SELECT COUNT(IDREPOSITORIO) AS id  FROM recurso');
-		$statement->execute();
-		$resultado = $statement->fetchAll();
-		foreach ($resultado as $id) {
-			$IDREPOSITORIO = (integer)$id["id"];
-		}
-		$IDREPOSITORIO ++;
 
 		$statement = $conexion->prepare('SELECT IDUSUARIO, RUTAUSUARIO FROM usuario WHERE USER LIKE :user');
 		$statement->execute(array(':user'=>$user));
@@ -98,13 +90,12 @@ if(isset($_POST['submit'])){
 			$RUTARECURSO='NULL';
 		}
 
-		$IDREPOSITORIO =(integer)$IDREPOSITORIO;
 		$IDUSUARIO=(integer)$IDUSUARIO;
 		$IDMATERIA=(integer)$IDMATERIA;
 		$SIZERECURSO=(integer)$SIZERECURSO;
 
 		try {
-			$statement = $conexion->query("INSERT INTO recurso VALUES ($IDREPOSITORIO,$IDUSUARIO,$IDCALIFICACION,$IDMATERIA,'$NOMBRERECURSO','$DESCRIPCIONRECURSO','$TIPORECURSO','$AUTORRECURSO','$INSTAUTORRECURSO','$FECHACREACIONRECURSO','$PALABRASCLAVERECURSO',
+			$statement = $conexion->query("INSERT INTO recurso (IDUSUARIO,IDCALIFICACION,IDMATERIA,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO, FECHACREACIONRECURSO,PALABRASCLAVERECURSO,ESTADORECURSO,RUTARECURSO,LINKRECURSO,TIPOARCHIVO,SIZERECURSO) VALUES ($IDUSUARIO,$IDCALIFICACION,$IDMATERIA,'$NOMBRERECURSO','$DESCRIPCIONRECURSO','$TIPORECURSO','$AUTORRECURSO','$INSTAUTORRECURSO','$FECHACREACIONRECURSO','$PALABRASCLAVERECURSO',
 				'$ESTADORECURSO','$RUTARECURSO','$LINKRECURSO','$TIPOARCHIVO',$SIZERECURSO)");
 
 			header('Location: repositorio.php');

@@ -62,15 +62,8 @@ if(isset($_POST['submit'])){
         if (!is_dir($carpeta)) {
           mkdir($carpeta, 0777, true);
         }
-        $statement = $conexion->prepare('SELECT COUNT(IDUSUARIO) AS id FROM usuario');
-        $statement->execute();
-        $resultado = $statement->fetchAll();
-        foreach ($resultado as $id) {
-          $idusuario = (integer)$id["id"];
-        }
-        $idusuario ++;
-        $statement = $conexion->prepare('INSERT INTO usuario(IDUSUARIO, CEDULAUSUARIO, NOMBRESUSUARIO, APELLIDOSUSUARIO, TIPOUSUARIO, USER, PASSWORD, RUTAUSUARIO, ESTADOUSUARIO) VALUES (:idusuario,:cedula,:nombres,:apellidos,:tipo,:user,:password,:carpeta,:estado)');
-        $statement->execute(array(':idusuario'=>$idusuario,':cedula'=>$cedula,':nombres'=>$nombres,':apellidos'=>$apellidos,':tipo'=>$tipo,':user'=>$user,':password'=>$password,':carpeta'=>$carpeta,':estado'=>$estado));
+        $statement = $conexion->prepare('INSERT INTO usuario(CEDULAUSUARIO, NOMBRESUSUARIO, APELLIDOSUSUARIO, TIPOUSUARIO, USER, PASSWORD, RUTAUSUARIO, ESTADOUSUARIO) VALUES (:cedula,:nombres,:apellidos,:tipo,:user,:password,:carpeta,:estado)');
+        $statement->execute(array(':cedula'=>$cedula,':nombres'=>$nombres,':apellidos'=>$apellidos,':tipo'=>$tipo,':user'=>$user,':password'=>$password,':carpeta'=>$carpeta,':estado'=>$estado));
 
         $destinatario = $CORREO;
         $asunto = 'credenciales P-DIRA';

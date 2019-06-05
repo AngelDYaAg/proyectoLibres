@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2019 a las 02:31:42
+-- Tiempo de generación: 05-06-2019 a las 02:04:57
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -94,7 +94,6 @@ CREATE TABLE `lista` (
 --
 
 INSERT INTO `lista` (`ID`, `NOMBRES`, `APELLIDOS`, `CORREO`) VALUES
-(0, '', '', ''),
 (1, 'Angel Daniel', 'Yanez Aguiar', 'angel.yanez@epn.edu.ec'),
 (2, 'Alexandra Vanessa', 'Macas Cevallos', 'alexandra.macas@epn.edu.ec'),
 (3, 'Carol Lizeth', 'Ona Hinostroza', 'carol.ona@epn.edu.ec'),
@@ -227,6 +226,58 @@ ALTER TABLE `recurso`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`IDUSUARIO`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `calificacion`
+--
+ALTER TABLE `calificacion`
+  MODIFY `IDCALIFICACION` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `carrera`
+--
+ALTER TABLE `carrera`
+  MODIFY `IDCARRERA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `IDCOMENTARIO` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `foro`
+--
+ALTER TABLE `foro`
+  MODIFY `IDFORO` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `lista`
+--
+ALTER TABLE `lista`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `materia`
+--
+ALTER TABLE `materia`
+  MODIFY `IDMATERIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `recurso`
+--
+ALTER TABLE `recurso`
+  MODIFY `IDREPOSITORIO` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `IDUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
