@@ -23,15 +23,15 @@ require "conexion.php"; // conexión con la BD
 
     <div class="form-group">
       <label for="inputAutor">Autor</label> <!-- etiqueta de entrada para buscar por Autor -->
-      <input type="text" class="form-control" id="inputAutor" name="autor" placeholder="ingrese autor"> <!-- formato del label Autor  -->
+      <input type="text" class="form-control" id="inputAutor" name="autor" placeholder="ingrese autor"> <!-- entrada del label Autor  -->
     </div>
     <div class="form-group">
       <label for="inputAño">año</label> <!-- etiqueta de entrada para buscar por Año -->
-      <input type="date" class="form-control" name="fecha" id="inputAño"> <!-- formato del label Año  -->
+      <input type="date" class="form-control" name="fecha" id="inputAño"> <!-- entrada del label Año  -->
     </div>
     <div class="form-group">
       <label for="materia">Materia</label> <!-- etiqueta de entrada para buscar por Materia -->
-      <select class="form-control" id="materia" name="materia"> <!-- formato del label Materia  -->
+      <select class="form-control" id="materia" name="materia"> <!-- entrada del combobox  del label Materia  -->
         <option value="">elija una opcion</option> <!-- genera un combobox para seleccionar la materia -->
         <?php
         $statement = $conexion->prepare('SELECT IDMATERIA, NOMBREMATERIA FROM materia'); // Sentencia para buscar la materias y cargar al combobox
@@ -47,7 +47,7 @@ require "conexion.php"; // conexión con la BD
     </div>
     <div class="form-group">
       <label for="inputClave">Palabras clave</label> <!-- etiqueta de entrada para buscar por Palabras clave -->
-      <input type="text" class="form-control" id="inputClave" name="clave" placeholder="ingrese Palabras clave"> <!-- formato del label Palabras clave  -->
+      <input type="text" class="form-control" id="inputClave" name="clave" placeholder="ingrese Palabras clave"> <!-- entrada del label Palabras clave  -->
     </div>
     <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

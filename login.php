@@ -74,12 +74,12 @@ if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
       <div class="form-group">
         <br>
         <label for="inputUser" class="usuarioLogin">Usuario</label> <!-- Etiqueta de entrada para el texto de usuario -->
-        <input class="form-control" id="inputUser" name="inputUser" type="text" placeholder="Ingresar Usuario"> <!-- Estilo del label de usuario -->
+        <input class="form-control" id="inputUser" name="inputUser" type="text" placeholder="Ingresar Usuario"> <!-- Entrada del label de usuario -->
       </div>
       <div class="form-group">
         <br>
         <label for="inputPW" class="usuarioLogin">Contraseña</label> <!-- Etiqueta de entrada para el texto de password -->
-        <input class="form-control" id="inputPW" name="inputPW" type="password" placeholder="Ingresar Contraseña"><!-- Estilo del label de password -->
+        <input class="form-control" id="inputPW" name="inputPW" type="password" placeholder="Ingresar Contraseña"><!-- Entrada del label de password -->
       </div>
 
       <?php if(!empty($errores)): ?> <!-- Si existen errores mostrara un mensaje -->
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
         <?php echo $errores; ?>
       </div>
     <?php endif ?>
-    
+
     <br>
     <br>
     <div class="containerLogininicio2">
