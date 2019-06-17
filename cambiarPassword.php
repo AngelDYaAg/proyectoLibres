@@ -1,5 +1,5 @@
 <?php session_start(); // Iniciar sesión
-if(!isset($_SESSION['usuario'])){ // Si en la sesion no coincide con el usuario, nos redirie al index.php
+if(!isset($_SESSION['usuario'])){ // Si en la sesion no coincide con el usuario, nos redirige al index.php
   header('Location: index.php');
 }
 

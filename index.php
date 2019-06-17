@@ -1,5 +1,5 @@
 <?php session_start(); // Iniciar sesion 
-if (isset($_SESSION['usuario'])) { // Si en la sesion coincide con el usuario, nos redirie al repositorio.php
+if (isset($_SESSION['usuario'])) { // Si en la sesion coincide con el usuario, nos redirige al repositorio.php
   header('Location: repositorio.php');
 }
 ?>
