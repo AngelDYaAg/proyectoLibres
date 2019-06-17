@@ -84,23 +84,23 @@ if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
 
       <?php if(!empty($errores)): ?> <!-- Si existen errores mostrara un mensaje -->
 
-          <div class="alert-error">
-            <?php echo $errores; ?>
-          </div>
-        <?php endif ?>
-      
+      <div class="alert-error">
+        <?php echo $errores; ?>
+      </div>
+    <?php endif ?>
+    
+    <br>
+    <br>
+    <div class="containerLogininicio2">
+      <!-- Botones de login -->
+      <input type="submit" class="btn btn-success btn-block" name="submit" value="Iniciar Sesion"> <!-- Boton iniciar sesion -->
       <br>
-      <br>
-      <div class="containerLogininicio2">
-        <!-- Botones de login -->
-        <input type="submit" class="btn btn-success btn-block" name="submit" value="Iniciar Sesion"> <!-- Boton iniciar sesion -->
-        <br>
-        <a class="btn btn-danger btn-block" href="index.php">Cancelar</a> <!-- Boton de Cancelar -->
+      <a class="btn btn-danger btn-block" href="index.php">Cancelar</a> <!-- Boton de Cancelar -->
 
-      </form> <!-- Cerrar formulario -->
+    </form> <!-- Cerrar formulario -->
 
-    </div>
-  </div> <!-- cerrar contenedor -->
+  </div>
+</div> <!-- cerrar contenedor -->
 </body> <!-- cerrar el cuerpo de la página -->
 
 </html>
