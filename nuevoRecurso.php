@@ -1,5 +1,5 @@
-<?php session_start();
-if(!isset($_SESSION['usuario'])){
+<?php session_start();// Iniciar sesion 
+if(!isset($_SESSION['usuario'])){// Si en la sesion no coincide con el usuario, nos redirige al index.php
 	header('Location: index.php');
 }
 require "conexion.php";
@@ -7,61 +7,61 @@ $errores = '';
 
 $user=$_SESSION['usuario'];
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){//verificar informacion enviada por POST
 	$IDUSUARIO;
 	$IDCALIFICACION='NULL';
-	$IDMATERIA=(integer)$_POST['materia'];
-	$NOMBRERECURSO=$_POST['nombre'];
-	$DESCRIPCIONRECURSO=$_POST['descripcion'];
-	$TIPORECURSO=$_POST['tipo'];
-	$AUTORRECURSO=$_POST['autor'];
-	$INSTAUTORRECURSO=$_POST['institucion'];
-	$FECHACREACIONRECURSO=$_POST['fecha'];
-	$PALABRASCLAVERECURSO=$_POST['palabras'];
+	$IDMATERIA=(integer)$_POST['materia'];//recibe informacion de materia
+	$NOMBRERECURSO=$_POST['nombre'];//recibe informacion de nombre
+	$DESCRIPCIONRECURSO=$_POST['descripcion'];//recibe informacion de descripcion
+	$TIPORECURSO=$_POST['tipo'];//recibe informacion de tipo
+	$AUTORRECURSO=$_POST['autor'];//recibe informacion de autor
+	$INSTAUTORRECURSO=$_POST['institucion'];//recibe informacion de institucion
+	$FECHACREACIONRECURSO=$_POST['fecha'];//recibe informacion de fecha
+	$PALABRASCLAVERECURSO=$_POST['palabras'];//recibe informacion de palabras
 	$ESTADORECURSO='privado';
 	$RUTARECURSO;
 	$LINKRECURSO;
 	$TIPOARCHIVO;
 	$SIZERECURSO;
 
-	if (!empty($NOMBRERECURSO)) {
-		$NOMBRERECURSO = trim($NOMBRERECURSO);
+	if (!empty($NOMBRERECURSO)) {//verifica que exista el parametro nombre del recurso
+		$NOMBRERECURSO = trim($NOMBRERECURSO);//elimina espacios al principio y al final del nombre del recurso
 	} else {
 		$errores .= 'ingrese el nombre del recurso <br />';
 	}
 
-	if (!empty($DESCRIPCIONRECURSO)) {
-		$DESCRIPCIONRECURSO = trim($DESCRIPCIONRECURSO);
+	if (!empty($DESCRIPCIONRECURSO)) {//verifica que exista el parametro de descripcion del recurso
+		$DESCRIPCIONRECURSO = trim($DESCRIPCIONRECURSO);//elimina espacios al principio y al final de la descripcion del recurso
 	} else {
 		$errores .= 'ingrese la descripcion del recurso <br />';
 	}
 
-	if (!empty($TIPORECURSO)) {
-		$TIPORECURSO = trim($TIPORECURSO);
+	if (!empty($TIPORECURSO)) {//verifica que exista el parametro tipo recurso
+		$TIPORECURSO = trim($TIPORECURSO);//elimina espacios al principio y al final del tipo de recurso
 	} else {
 		$errores .= 'ingrese el tipo del recurso <br />';
 	}
 
-	if (!empty($AUTORRECURSO)) {
-		$AUTORRECURSO = trim($AUTORRECURSO);
+	if (!empty($AUTORRECURSO)) {//verifica que exista el parametro autor de recurso
+		$AUTORRECURSO = trim($AUTORRECURSO);//elimina espacios al principio y al final del autor del recurso
 	} else {
 		$errores .= 'ingrese el autor del recurso <br />';
 	}
 
-	if (!empty($INSTAUTORRECURSO)) {
-		$INSTAUTORRECURSO = trim($INSTAUTORRECURSO);
+	if (!empty($INSTAUTORRECURSO)) {//verifica que exista el parametro institucion del recurso
+		$INSTAUTORRECURSO = trim($INSTAUTORRECURSO);//elimina espacios al principio y al final de la institucion del autor recurso
 	} else {
 		$errores .= 'ingrese la institucion del autor del recurso <br />';
 	}
 
-	if (!empty($FECHACREACIONRECURSO)) {
-		$FECHACREACIONRECURSO = trim($FECHACREACIONRECURSO);
+	if (!empty($FECHACREACIONRECURSO)) {//verifica que exista el parametro fecha de creacion de recurso
+		$FECHACREACIONRECURSO = trim($FECHACREACIONRECURSO);//elimina espacios al principio y al final de la fecha de creacion del recurso
 	} else {
 		$errores .= 'ingrese la fecha de creacion del recurso <br />';
 	}
 
-	if (!empty($PALABRASCLAVERECURSO)) {
-		$PALABRASCLAVERECURSO = trim($PALABRASCLAVERECURSO);
+	if (!empty($PALABRASCLAVERECURSO)) {//verifica que exista el parametro palabras claves del recurso
+		$PALABRASCLAVERECURSO = trim($PALABRASCLAVERECURSO);//elimina espacios al principio y al final de las palabras claves
 	} else {
 		$errores .= 'ingrese las palabras clave del recurso <br />';
 	}
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])){
 
 	if (empty($errores)) {
 
-		$statement = $conexion->prepare('SELECT IDUSUARIO, RUTAUSUARIO FROM usuario WHERE USER LIKE :user');
+		$statement = $conexion->prepare('SELECT IDUSUARIO, RUTAUSUARIO FROM usuario WHERE USER LIKE :user');//recuperar id y ruta del usuario actual
 		$statement->execute(array(':user'=>$user));
 		$resultado = $statement->fetchAll();
 		foreach ($resultado as $id) {
