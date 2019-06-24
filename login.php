@@ -10,6 +10,9 @@ if(isset($_POST['submit'])){
   $usuario = $_POST['inputUser'];
   $password = $_POST['inputPW'];
   $tipo = $_POST['userType'];
+  $administrador = 'admin';
+  $estadoactivo = 'activo';
+
 
   if (!empty($usuario)) {
     $usuario = trim($usuario);
@@ -32,17 +35,30 @@ if(isset($_POST['submit'])){
       foreach ($resultado as $user) {
         $pass = $user["PASSWORD"];
         $cedula = $user["CEDULAUSUARIO"];
+        $estado = $user["ESTADOUSUARIO"];
+        
       }
+      if(strcmp ($estado , $estadoactivo ) == 0){
+
       if(strcmp ($pass , $password ) == 0){
         $_SESSION['usuario']=$usuario;
         $cedula = substr($cedula, -4);
         if(strcmp ($cedula , $password ) == 0){
           header('Location: cambiarPassword.php');
-        }else{
-          header('Location: repositorio.php');
-        }
+        }else if(strcmp ($usuario, $administrador)==0){
+          
+            header('Location: Administrador.php');
+          }else{
+            header('Location: repositorio.php');
+          }
+          
+
+        
       }else{
         $errores .='Usuario o contraseña incorrectas';
+      }
+      }else {
+        $errores .='Usuario bloqueado';
       }
     }
   }

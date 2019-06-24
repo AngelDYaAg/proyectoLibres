@@ -26,7 +26,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
   echo "CLAVE: $CLAVE";
   $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND PALABRASCLAVERECURSO = '$CLAVE' AND IDUSUARIO = $usuario");
 }else{
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND IDUSUARIO = $usuario");
+  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'publico'");
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
         <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
         <br>
         <br>
-        <a class="btn btn-primary" href="repositorioPublico.php" role="button">Repositorio público</a>
+        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio público</a>
         <br>
         <br>
         <a class="btn btn-primary" href="foro.php" role="button">Foro</a>
@@ -117,11 +117,10 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
           // echo '<li><a href="#">4</a></li>';
           // echo '<li><a href="#">5</a></li>';
           // echo '</ul>';
-          echo '<a class="btn btn-success" href="publicar.php?idpublicar='.$IDREPOSITORIO.'">Publicar</a>';
+          
           echo " ";
           echo '<a class="btn btn-warning" href="descargar.php?iddescargar='.$IDREPOSITORIO.'">Descargar</a>';
 
-          echo '<a class="btn btn-danger" href="eliminar.php?no='.$IDREPOSITORIO.'">Eliminar</a>';
           echo '</div>';
           echo '</td>';
           echo "</tr>";

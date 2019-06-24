@@ -1,34 +1,3 @@
-<?php session_start();
-if(!isset($_SESSION['usuario'])){
-  header('Location: index.php');
-}
-
-require 'conexion.php';
-$usuario=$_SESSION['usuario'];
-$statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$usuario'");
-foreach ($statement as $id) {
-  $usuario=(integer)$id['IDUSUARIO'];
-}
-if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
-  $AUTOR = $_POST['autor'];
-  echo "autor: $AUTOR";
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND AUTORRECURSO LIKE '$AUTOR' AND IDUSUARIO = $usuario");
-}else if(isset($_POST['fecha'])&&!empty($_POST['fecha'])){
-  $FECHA = $_POST['fecha'];
-  echo "fecha: $FECHA";
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND FECHACREACIONRECURSO LIKE '$FECHA' AND IDUSUARIO = $usuario");
-}else if(isset($_POST['materia'])&&!empty($_POST['materia'])){
-  $MATERIA = $_POST['materia'];
-  echo "MATERIA: $MATERIA";
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND IDMATERIA = $MATERIA AND IDUSUARIO = $usuario");
-}else if(isset($_POST['clave'])&&!empty($_POST['clave'])){
-  $CLAVE = $_POST['clave'];
-  echo "CLAVE: $CLAVE";
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND PALABRASCLAVERECURSO = '$CLAVE' AND IDUSUARIO = $usuario");
-}else{
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND IDUSUARIO = $usuario");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +22,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
         <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
         <br>
         <br>
-        <a class="btn btn-primary" href="repositorioPublico.php" role="button">Repositorio público</a>
+        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio público</a>
         <br>
         <br>
         <a class="btn btn-primary" href="foro.php" role="button">Foro</a>

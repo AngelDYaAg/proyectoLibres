@@ -26,9 +26,10 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
   echo "CLAVE: $CLAVE";
   $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND PALABRASCLAVERECURSO = '$CLAVE' AND IDUSUARIO = $usuario");
 }else{
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND IDUSUARIO = $usuario");
+  $statement = $conexion->query("SELECT IDUSUARIO,NOMBRESUSUARIO,APELLIDOSUSUARIO,ESTADOUSUARIO FROM usuario");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,21 +49,12 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
 
     <div class="row">
       <div class="col-sm-1">
+        <br>  
         <br>
-
-        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" href="repositorioPublico.php" role="button">Repositorio público</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" href="foro.php" role="button">Foro</a>
+       
       </div>
       <div class="col-sm-9">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-primary" href="buscar.php" role="button">Buscar</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-primary" href="nuevoRecurso.php" role="button">Nuevo recurso</a>
         <br>
         <br>
 
@@ -71,57 +63,31 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
 
         <tr>
           <td width="10%"><strong>Nombre</strong></td>
-          <td width="10%"><strong>Descripcion</strong></td>
-          <td width="10%"><strong>Tipo</strong></td>
-          <td width="10%"><strong>Autor</strong></td>
-          <td width="10%"><strong>institucion</strong></td>
-          <td width="10%"><strong>Fecha creacion</strong></td>
-          <td width="10%"><strong>tamaño archivo</strong></td>
-          <td width="10%"><strong>tipo archivo</strong></td>
-          <td width="10%"><strong>Fecha ingreso</strong></td>
-          <td width="20%"><strong>Opciones</strong></td>
+          <td width="10%"><strong>Apellido</strong></td>
+          <td width="10%"><strong>Estado</strong></td>
+          <td width="10%"><strong>Opciones</strong></td>
         </tr>
         <?php
         foreach ($statement as $id) {
-          $IDREPOSITORIO = $id["IDREPOSITORIO"];
-          $NOMBRERECURSO = $id["NOMBRERECURSO"];
-          $DESCRIPCIONRECURSO = $id["DESCRIPCIONRECURSO"];
-          $TIPORECURSO = $id["TIPORECURSO"];
-          $AUTORRECURSO = $id["AUTORRECURSO"];
-          $INSTAUTORRECURSO = $id["INSTAUTORRECURSO"];
-          $FECHACREACIONRECURSO = $id["FECHACREACIONRECURSO"];
-          $SIZERECURSO = $id["SIZERECURSO"];
-          $TIPOARCHIVO = $id["TIPOARCHIVO"];
-          $FECHACREACIONRECURSO = $id["FECHACREACIONRECURSO"];
-
-
+          $IDUSUARIO = $id["IDUSUARIO"];
+          $NOMBRE = $id["NOMBRESUSUARIO"];
+          $APELLIDO = $id["APELLIDOSUSUARIO"];
+          $ESTADO = $id["ESTADOUSUARIO"];
+          
           echo "<tr>";
-          echo "<td>$NOMBRERECURSO</td>";
-          echo "<td>$DESCRIPCIONRECURSO</td>";
-          echo "<td>$TIPORECURSO</td>";
-          echo "<td>$AUTORRECURSO</td>";
-          echo "<td>$INSTAUTORRECURSO</td>";
-          echo "<td>$FECHACREACIONRECURSO</td>";
-          echo "<td>$SIZERECURSO</td>";
-          echo "<td>$TIPOARCHIVO</td>";
-          echo "<td>$FECHACREACIONRECURSO</td>";
+          echo "<td>$NOMBRE</td>";
+          echo "<td>$APELLIDO</td>";
+          echo "<td>$ESTADO</td>";
+        
           echo '<td>';             
           echo '<div class="dropdown">';
-          // echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar';
-          // echo '<span class="caret"></span>';
-          // echo '</button>';
-          // echo '<ul class="dropdown-menu">';
-          // echo '<li><a href="#">1</a></li>';
-          // echo '<li><a href="#">2</a></li>';
-          // echo '<li><a href="#">3</a></li>';
-          // echo '<li><a href="#">4</a></li>';
-          // echo '<li><a href="#">5</a></li>';
-          // echo '</ul>';
-          echo '<a class="btn btn-success" href="publicar.php?idpublicar='.$IDREPOSITORIO.'">Publicar</a>';
-          echo " ";
-          echo '<a class="btn btn-warning" href="descargar.php?iddescargar='.$IDREPOSITORIO.'">Descargar</a>';
-
-          echo '<a class="btn btn-danger" href="eliminar.php?no='.$IDREPOSITORIO.'">Eliminar</a>';
+          echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estado';
+          echo '<span class="caret"></span>';
+          echo '</button>';
+          echo '<ul class="dropdown-menu">';
+          echo '<li><a href="activar.php?no='.$IDUSUARIO.'">Activo</a></li>';
+          echo '<li><a href="bloquear.php?no='.$IDUSUARIO.'">Bloqueado</a></li>';
+          echo '</ul>';
           echo '</div>';
           echo '</td>';
           echo "</tr>";
