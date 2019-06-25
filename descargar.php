@@ -1,19 +1,20 @@
-<?php session_start();
-if(!isset($_SESSION['usuario'])){
+<?php session_start(); // iniciar sesión
+if(!isset($_SESSION['usuario'])){ // Si en la sesion coincide con el usuario, nos redirige al repositorio.php
 	header('Location: index.php');
 }
-require 'conexion.php';
-$id=(integer)$_GET['iddescargar'];
+require 'conexion.php'; // conexión con la base de datos
+$id=(integer)$_GET['iddescargar']; // obtener le id de descargar
 
-$statement = $conexion->query("SELECT RUTARECURSO,TIPOARCHIVO FROM recurso WHERE IDREPOSITORIO = $id");
-foreach ($statement as $key) {
-	$ruta=$key['RUTARECURSO'];
-	$tipo=$key['TIPOARCHIVO'];
+$statement = $conexion->query("SELECT RUTARECURSO,TIPOARCHIVO FROM recurso WHERE IDREPOSITORIO = $id"); // busca el id de la ruta y tipo de archivo
+foreach ($statement as $key) { // buscar el id
+	$ruta=$key['RUTARECURSO']; // guardar la ruta del recurso en la varibale de ruta
+	$tipo=$key['TIPOARCHIVO']; // guardar el tipo de archivo en la variable de tipo
 }
-$nombre=substr($ruta,strripos($ruta,"/")+1);
-$fileName = basename($nombre);
+$nombre=substr($ruta,strripos($ruta,"/")+1); // separar al primer / mas un caracter
+$fileName = basename($nombre); // obtener el nombre del archivo
+
 $filePath = $ruta;
-if(!empty($fileName) && file_exists($filePath)){
+if(!empty($fileName) && file_exists($filePath)){ // si existe el archivo descarga el archivo
 	header("Cache-Control: public");
 	header("Content-Description: File Transfer");
 	header("Content-Disposition: attachment; filename=$fileName");
@@ -21,9 +22,9 @@ if(!empty($fileName) && file_exists($filePath)){
 	header("Content-Transfer-Encoding: binary");
 	readfile($filePath);
 	exit;
-}else{
-	echo 'The file does not exist.';
+}else{ 
+	echo 'The file does not exist.'; // si no existe nos muestra un mensaje de error 
 }
 
-header('Location: repositorio.php');
+header('Location: repositorio.php'); // nos redirige a la página de repositorio.php
 ?>
