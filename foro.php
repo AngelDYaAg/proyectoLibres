@@ -8,11 +8,11 @@ $statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$u
 foreach ($statement as $id) {
   $usuario=(integer)$id['IDUSUARIO'];
 }
-$statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUTORFORO, NOMBREAUTORFORO FROM foro");
+$statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUTORFORO, NOMBREAUTORFORO, FECHA FROM foro ORDER BY FECHA DESC");
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sp">
 <!-- cabecera de la página -->
 <head>
   <?php
@@ -20,45 +20,66 @@ $statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUT
   ?>
 </head>
  <!-- cuerpo del la página -->
-<body class="bg-dark">
-  <div class="container">
-    <div class="row">
-      <div class="row" style="text-align: right;">
-        <a class="btn btn-link" href="cerrarSesion.php" role="button">cerrar sesion</a><!-- entrada del boton cerrar sesion  -->
-      </div>
-      <div class="col-sm-4">
-        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a><!-- entrada del boton Repositorio personal  -->
-        <br>
-        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio publico</a><!-- entrada del boton Repositorio publico  -->
-        <br>
-        <a class="btn btn-primary" href="foro.php" role="button">Foro</a><!-- entrada del boton Foro  -->
-      </div>
-      <div class="col-sm-8">
-        <a class="btn btn-primary" href="nuevoForo.php" role="button">nuevo</a><!-- entrada del boton nuevo  -->
-      </form>
-      <table>
-        <tr>
-          <td width="20%"><strong>Autor</strong></td>
-          <td width="60%"><strong>Título</strong></td>
-          <td width="20%"><strong>Opciones</strong></td>
-        </tr>
-        <?php
-        foreach ($statement as $id) {
-          $NOMBREFORO = $id["NOMBREFORO"];
-          $NOMBREAUTORFORO = $id["NOMBREAUTORFORO"];
-          
-          echo "<tr>";
-          echo "<td>$NOMBREFORO</td>";
-          echo "<td>$NOMBREAUTORFORO</td>";
-          echo '<td>';  
-            echo '<a class="btn btn-primary" href="verForo.php" role="button">ver</a>'; 
-            echo '<button type="button" class="btn btn-danger">eliminar</button>' ;
-          echo '</td>';
-          echo "</tr>";
 
-        }
-        ?>
-      </table>
+
+
+
+<body id="fondorepositorio">
+  <div class="container">
+      <div class="row" style="text-align: right;">
+        <a class="btn btn-link" href="cerrarSesion.php" role="button">Cerrar Sesión</a><!-- entrada del boton cerrar sesion  -->
+      </div>
+  </div>
+  <div class="containerRepositorio1">
+  <div class="col-sm-1">
+        <br>
+
+        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
+        <br>
+        <br>
+        <a class="btn btn-primary" href="repositorioPublico.php" role="button">Repositorio público</a>
+        <br>
+        <br>
+        <a class="btn btn-primary" href="foro.php" role="button">Foro</a>
+      </div>
+      <div class="col-sm-9">
+
+      <div class="row" style="text-align:center;margin:10px;">
+        <a class="btn btn-primary btn-lg" href="nuevoForo.php" role="button">Nuevo Tema</a>
+      </div><!-- entrada del boton nuevo  -->
+      <div class="row">
+        <table style="width:100%;">
+          <tr>
+            <td width="20%"><strong>Autor</strong></td>
+            <td width="40%"><strong>Título</strong></td>
+            <td width="10%"><strong>Fecha</strong></td>
+            <td width="20%"><strong>Opciones</strong></td>
+          </tr>
+          <?php
+          foreach ($statement as $id) {
+            $IDFORO = $id["IDFORO"];
+            $NOMBREFORO = $id["NOMBREFORO"];
+            $NOMBREAUTORFORO = $id["NOMBREAUTORFORO"];
+            $FECHA = $id["FECHA"];
+            
+            echo "<tr>";
+            echo "<td>$NOMBREAUTORFORO</td>";
+            echo "<td>$NOMBREFORO</td>";
+            echo "<td>$FECHA</td>";
+            echo '<td>';  
+              echo '<a class="btn btn-primary" href="verForo.php?no=" role="button">Ver</a>';
+              if($usuario==2||$usuario==1){
+                echo '<a type="button" class="btn btn-danger" href="eliminar_foro.php?no='.$IDFORO.'">Eliminar</a>' ;
+
+              } 
+            echo '</td>';
+            echo "</tr>";
+
+          }
+          ?>
+        </table>
+      </div>
+     
     </div>
   </div>
 </div>
