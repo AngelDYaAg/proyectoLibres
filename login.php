@@ -11,7 +11,6 @@ require "conexion.php"; // COnexion con la base de datos del proyecto
 $statement = $conexion->prepare('SELECT * FROM usuario WHERE USER LIKE :user and TIPOUSUARIO LIKE :type'); // Sentencia de buscar el tipo de usuario
 $errores = ''; //errores mensaje
 
-<<<<<<< HEAD
 if(isset($_POST['submit'])){
   $usuario = $_POST['inputUser'];
   $password = $_POST['inputPW'];
@@ -19,22 +18,6 @@ if(isset($_POST['submit'])){
   $administrador = 'admin';
   $estadoactivo = 'activo';
 
-=======
-if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
-/**
-*
-* \param  string $usuario
-* el parametro usuario va a ser igual al texto de entrada de usuario
-* \param  string $password
-* el parametro password va a ser igual al texto de entrada de la contraseña
-* \param  string $tipo
-* Selecciona del combobox el tipo de usuario
-*
-*/
-  $usuario = $_POST['inputUser']; //la variable usuario va a ser igual al texto de entrada de usuario
-  $password = $_POST['inputPW']; //  la variable password va a ser igual al texto de entrada de la contraseña
-  $tipo = $_POST['userType']; // Selecciona del combobox el tipo de usuario
->>>>>>> 89530aa5f585d7709ce640e7d54ca70dc12b55fd
 
   if (!empty($usuario)) { 
     $usuario = trim($usuario); //verifica si el usuario esta vacio
@@ -60,7 +43,6 @@ if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
         $estado = $user["ESTADOUSUARIO"];
         
       }
-<<<<<<< HEAD
       if(strcmp ($estado , $estadoactivo ) == 0){
 
       if(strcmp ($pass , $password ) == 0){
@@ -77,16 +59,6 @@ if(isset($_POST['submit'])){ //envia el metodo POST al dar clic en submit
           
 
         
-=======
-      if(strcmp ($pass , $password ) == 0){ // si es un nuevo usuario realizara que tomara el nombre completo del usuario sin espacios
-        $_SESSION['usuario']=$usuario;
-        $cedula = substr($cedula, -4); // toma los 4 ultimo digitos de la cédula
-        if(strcmp ($cedula , $password ) == 0){ // si no existe previamente el usuario pedira cambiar la contraseña
-          header('Location: cambiarPassword.php'); //Cambiar la contraseña por primera ves
-        }else{
-          header('Location: repositorio.php'); //si ya inicio sesion mas de 1 vez, lo redirige al repositorio del usuario
-        }
->>>>>>> 89530aa5f585d7709ce640e7d54ca70dc12b55fd
       }else{
         $errores .='Usuario o contraseña incorrectas'; // mensaje de error si no coincide el usuario y contraseña
       }

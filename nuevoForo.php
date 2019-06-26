@@ -2,10 +2,14 @@
 if(!isset($_SESSION['usuario'])){// Si en la sesion no coincide con el usuario, nos redirige al index.php
   header('Location: index.php');
 }
+require "conexion.php";
 $errores = '';
+
+$user=$_SESSION['usuario'];
 
 
 if(isset($_POST['submit'])){//verificar informacion enviada por POST
+	$IDUSUARIO;
   $nombre = $_POST['inputNombre'];//recibe informacion de nombre
   $descripcion = $_POST['inputDescripcion'];// recibe informacion de descripcion 
 
@@ -18,6 +22,29 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
     $descripcion = trim($descripcion);//elimina espacios al principio y al final de descripcion
   } else {
     $errores .= 'ingrese la descripcion del foro';
+  }
+
+  if (empty($errores)) {
+    $statement = $conexion->prepare('SELECT IDUSUARIO,NOMBRESUSUARIO,APELLIDSOUSUARIO FROM usuario WHERE USER LIKE :user');
+    $statement->execute(array(':user'=>$user));
+    $resultado = $statement->fetchAll();
+    $NOMBRECOMPLETO='';
+		foreach ($resultado as $id) {
+      $IDUSUARIO = (integer)$id["IDUSUARIO"];
+      $NOMBRECOMPLETO=$id["NOMBRESUSUARIO"] . $id["APELLIDOSUSUARIO"];
+
+          }
+    
+		$IDUSUARIO=(integer)$IDUSUARIO;
+    try {
+			echo "INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')";
+			$statement = $conexion->query("INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')");
+			//header('Location: foro.php');
+		} catch (Exception $e) {
+			echo "error: " . $e->getMessage();
+			
+    }
+    
   }
 }
 ?>
