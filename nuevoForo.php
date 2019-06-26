@@ -36,9 +36,8 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
     }
     
     try {
-			echo "INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')";
 			$statement = $conexion->query("INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')");
-			//header('Location: foro.php');
+			header('Location: foro.php');
 		} catch (Exception $e) {
 			echo "error: " . $e->getMessage();
 			

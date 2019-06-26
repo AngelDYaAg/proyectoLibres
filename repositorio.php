@@ -9,7 +9,7 @@ $statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$u
 foreach ($statement as $id) {
   $usuario=(integer)$id['IDUSUARIO'];
 }
-if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
+if(isset($_POST['autor'])&&!empty($_POST['autor'])) { 
   $AUTOR = $_POST['autor'];
   echo "autor: $AUTOR";
   $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND AUTORRECURSO LIKE '$AUTOR' AND IDUSUARIO = $usuario");
