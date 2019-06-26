@@ -2,6 +2,14 @@
 if(!isset($_SESSION['usuario'])){// Si en la sesion no coincide con el usuario, nos redirige al index.php
   header('Location: index.php');
 }
+require 'conexion.php';
+$usuario=$_SESSION['usuario'];
+$statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$usuario'");
+foreach ($statement as $id) {
+  $usuario=(integer)$id['IDUSUARIO'];
+}
+$statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUTORFORO, NOMBREAUTORFORO FROM foro");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,18 +38,26 @@ if(!isset($_SESSION['usuario'])){// Si en la sesion no coincide con el usuario, 
       </form>
       <table>
         <tr>
-          <td><strong>Nombre</strong></td>
-          <td><strong>Descripcion</strong></td>
-          <td><strong>Opciones</strong></td>
+          <td width="20%"><strong>Autor</strong></td>
+          <td width="60%"><strong>Título</strong></td>
+          <td width="20%"><strong>Opciones</strong></td>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td>              
-            <a class="btn btn-primary" href="verForo.php" role="button">ver</a><!-- entrada del boton ver  -->
-            <button type="button" class="btn btn-danger">eliminar</button><!-- entrada del boton eliminar  -->
-          </td>
-        </tr>
+        <?php
+        foreach ($statement as $id) {
+          $NOMBREFORO = $id["NOMBREFORO"];
+          $NOMBREAUTORFORO = $id["NOMBREAUTORFORO"];
+          
+          echo "<tr>";
+          echo "<td>$NOMBREFORO</td>";
+          echo "<td>$NOMBREAUTORFORO</td>";
+          echo '<td>';  
+            echo '<a class="btn btn-primary" href="verForo.php" role="button">ver</a>'; 
+            echo '<button type="button" class="btn btn-danger">eliminar</button>' ;
+          echo '</td>';
+          echo "</tr>";
+
+        }
+        ?>
       </table>
     </div>
   </div>
