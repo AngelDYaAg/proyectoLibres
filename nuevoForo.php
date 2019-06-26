@@ -25,17 +25,16 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
   }
 
   if (empty($errores)) {
-    $statement = $conexion->prepare('SELECT IDUSUARIO,NOMBRESUSUARIO,APELLIDSOUSUARIO FROM usuario WHERE USER LIKE :user');
+    $statement = $conexion->prepare('SELECT IDUSUARIO,NOMBRESUSUARIO,APELLIDOSUSUARIO FROM usuario WHERE USER LIKE :user');
     $statement->execute(array(':user'=>$user));
     $resultado = $statement->fetchAll();
     $NOMBRECOMPLETO='';
 		foreach ($resultado as $id) {
       $IDUSUARIO = (integer)$id["IDUSUARIO"];
-      $NOMBRECOMPLETO=$id["NOMBRESUSUARIO"] . $id["APELLIDOSUSUARIO"];
+      $NOMBRECOMPLETO=$id["NOMBRESUSUARIO"] ." ". $id["APELLIDOSUSUARIO"];
 
-          }
+    }
     
-		$IDUSUARIO=(integer)$IDUSUARIO;
     try {
 			echo "INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')";
 			$statement = $conexion->query("INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO')");
