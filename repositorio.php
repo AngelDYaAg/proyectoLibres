@@ -34,42 +34,29 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
 
 <head>
   <?php
+  require "cabecera.php";
   require "head.php";
   ?>
 </head>
 
 <body id="fondorepositorio">
   <div class="container">
-    <div class="row" style="text-align: right;">
-      <a class="btn btn-link" href="cerrarSesion.php" role="button">Cerrar Sesión</a>
-    </div>
-  </div>
-  <div class="containerRepositorio1">
 
     <div class="row">
-      <div class="col-sm-1">
-        <br>
-
-        <a class="btn btn-primary" href="repositorio.php" role="button">Repositorio personal</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" href="repositorioPublico.php" role="button">Repositorio público</a>
-        <br>
-        <br>
-        <a class="btn btn-primary" href="foro.php" role="button">Foro</a>
-      </div>
-      <div class="col-sm-9">
+      <div class="col-sm-12">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="btn btn-primary" href="buscar.php" role="button">Buscar</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-primary" href="nuevoRecurso.php" role="button">Nuevo recurso</a>
+        <div class="text-center">
+          <a class="btn btn-primary btn-lg" href="nuevoRecurso.php" role="button">Nuevo recurso personal</a>
+        </div>
         <br>
         <br>
 
       </form>
-      <table>
+      <table style="width:100%;">
 
-        <tr>
+        <tr class="bg-primary">
           <td width="10%"><strong>Nombre</strong></td>
           <td width="10%"><strong>Descripcion</strong></td>
           <td width="10%"><strong>Tipo</strong></td>

@@ -4,9 +4,9 @@ if(!isset($_SESSION['usuario'])){ // Si en la sesion coincide con el usuario, no
   header('Location: index.php');
 }
 	require 'conexion.php';
-	$id=(integer)$_GET['no']; // obtener el id del recurso
+	$id=(integer)$_GET['no']; // obtener el id del foro
 
 
-	$statement = $conexion->query("DELETE FROM foro WHERE IDFORO = $id"); // eliminar de la base de datos del recurso
-	header('Location: foro.php'); // redirige a la página de repositorio.php
+	$statement = $conexion->query("DELETE FROM foro WHERE IDFORO = $id"); // eliminar de la base de datos 
+	header('Location: foro.php'); // redirige a la página de foro.php
 ?>
