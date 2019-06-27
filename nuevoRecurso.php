@@ -116,6 +116,7 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
 
 <head>
 	<?php
+  	require "cabecera.php";
 	require "head.php";
 	?>
 </head>

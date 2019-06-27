@@ -1,3 +1,7 @@
+-- USUARIO CAROL
+INSERT INTO `proyectolibres`.`usuario` (`CEDULAUSUARIO`, `NOMBRESUSUARIO`, `APELLIDOSUSUARIO`, `TIPOUSUARIO`, `USER`, `PASSWORD`, `ESTADOUSUARIO`) VALUES ('1725056459', 'Carol Lizeth', 'Oña Hinostroza', 'estudiante', 'carol', 'carol', 'activo');
+
+
 -- TABLA FORO RELACION USUARIO
 ALTER TABLE `proyectolibres`.`foro` 
 ADD COLUMN `IDAUTORFORO` INT(11) NULL AFTER `DESCRIPCIONFORO`,
@@ -10,3 +14,6 @@ ADD CONSTRAINT `fk_foro_usuario`
   REFERENCES `proyectolibres`.`usuario` (`IDUSUARIO`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+  
+ALTER TABLE `proyectolibres`.`foro` 
+ADD COLUMN `FECHA` DATE NULL AFTER `NOMBREAUTORFORO`;
