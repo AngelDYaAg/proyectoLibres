@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
       <div class="row">
         <?php
-          echo "<div style='margin: 20px; padding: 20px;border-style: dashed;border-color: darkgray; text-align: center;width:100%;'> $DESCRIPCIONFORO</div>";
+          echo "<div style='margin: 20px; padding: 20px;border-style: dashed;border-color: darkgray; text-align: center;width:100%;'> <p>$DESCRIPCIONFORO</p></div>";
         ?>  
       
       </div>
@@ -114,6 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </tr>
             <?php
             foreach ($statementComentarios as $id) {
+              $IDCOMENTARIO=(integer) $id["IDCOMENTARIO"];
               $IDUSUARIO =(integer) $id["IDUSUARIO"];
               $NOMBREAUTORCOMENTARIO = $id["NOMBREAUTORCOMENTARIO"];
               $CONTENIDO = $id["CONTENIDO"];
@@ -127,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               echo '<div style="padding:10px;">';  
                 echo '<a class="btn btn-primary" href="verForo.php?no='.$IDFORO.'" role="button" >Responder</a>';
                 if($usuario==$IDUSUARIO||$usuario==1){
-                  echo '<a type="button" class="btn btn-danger" href="eliminar_foro.php?no='.$IDFORO.'">Eliminar</a>' ;
+                  echo '<a type="button" class="btn btn-danger" href="eliminar_comentario_foro.php?idForo='.$IDFORO.'&idComentario='.$IDCOMENTARIO.'">Eliminar</a>' ;
 
                 } 
               echo '</div>';  
