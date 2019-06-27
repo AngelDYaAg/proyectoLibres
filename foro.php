@@ -14,36 +14,43 @@ $statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUT
 <!DOCTYPE html>
 <html lang="sp">
 <!-- cabecera de la página -->
+
 <head>
-  <?php
+    <?php
   require "cabecera.php";
   require "head.php";
   ?>
 </head>
- <!-- cuerpo del la página -->
+<!-- cuerpo del la página -->
 
 
 
 
 <body id="fondorepositorio">
-  
-  <div class="container">
-  
-    <div class="row">
-    <div class="col-md-12">
-      <div class="text-center">
-          <a class="btn btn-primary btn-lg" href="nuevoForo.php" role="button">Nuevo Tema</a>
-        </div>
-      <br>
-      <div class="row">
-        <table style="width:100%;">
-          <tr class="bg-primary">
-            <td width="20%"><strong>Autor</strong></td>
-            <td width="40%"><strong>Título</strong></td>
-            <td width="10%"><strong>Fecha y hora</strong></td>
-            <td width="20%" ><strong>Opciones</strong></td>
-          </tr>
-          <?php
+
+    <div class="container">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div style="text-align:center">
+                    <h1>FORO GENERAL</h1>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <a class="btn btn-primary btn-lg" href="nuevoForo.php" role="button">Nuevo Tema</a>
+                        </div>
+                        <div class="row" style="padding:20px;">
+                            <table style="width:100%;" class="table table-striped">
+                                <tr class="bg-primary">
+                                    <td width="20%"><strong>Autor</strong></td>
+                                    <td width="40%"><strong>Título</strong></td>
+                                    <td width="10%"><strong>Fecha y hora</strong></td>
+                                    <td width="20%"><strong>Opciones</strong></td>
+                                </tr>
+                                <?php
           foreach ($statement as $id) {
             $IDFORO = $id["IDFORO"];
             $IDAUTORFORO = (int) $id["IDAUTORFORO"];
@@ -68,14 +75,19 @@ $statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUT
 
           }
           ?>
-        </table>
-      </div>
-     
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-  </div>
+
     </div>
-      
-  </div>
 </body>
 
 </html>

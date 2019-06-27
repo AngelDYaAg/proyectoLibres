@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body  id="fondorepositorio">
   <div class="container">
-  <div class="panel panel-success">
+  <div class="panel panel-primary">
     <div class="panel-heading">
         <div style="text-align:center">
             <?php
@@ -105,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </h4>
       </div>
       <div class="row" style="padding:20px;">
-        <table style="width:100%;">
+        <table style="width:100%;" class="table table-striped">
             <tr class="bg-primary">
               <td width="20%"><strong>Autor</strong></td>
               <td width="40%"><strong>Comentario</strong></td>
