@@ -122,41 +122,48 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
 </head>
 
 <body id="fondonuevorepositorio">
-	<div class="containerRepositorioNuevo">
+	<div class="container">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div style="text-align:center">
+				<h1>NUEVO RECURSO</h1>
+			</div>
+		</div>
+		<div class="panel-body">
 		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="nombre">Nombre</label>
+				<label for="nombre" style="all: unset;">Nombre</label>
 				<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresar nombre">
 			</div>
 			<div class="form-group">
-				<label for="descripcion">Descripcion</label>
+				<label for="descripcion" style="all: unset;">Descripcion</label>
 				<textarea class="form-control" rows="5" id="descripcion" name="descripcion"></textarea>
 			</div>
 			<div class="form-group">
-				<label for="autor">Autor</label>
+				<label for="autor" style="all: unset;">Autor</label>
 				<input class="form-control" id="autor" name="autor" type="text" placeholder="Ingresar autor">
 			</div>
 			<div class="form-group">
-				<label for="institucion">Institucion del autor</label>
+				<label for="institucion" style="all: unset;">Institucion del autor</label>
 				<input class="form-control" id="institucion" name="institucion" type="text" placeholder="Ingresar institucion">
 			</div>
 			<div class="form-group">
-				<label for="palabras">Palabras claves</label>
+				<label for="palabras" style="all: unset;">Palabras claves</label>
 				<input class="form-control" id="palabras" name="palabras" type="text" placeholder="Ingresar palabras">
 			</div>
 			<div class="form-group">
-				<label for="fecha">Fecha de creación</label>
+				<label for="fecha" style="all: unset;">Fecha de creación</label>
 				<input type="date" class="form-control" id="fecha" name="fecha">
 			</div>
 			<div class="form-group">
-				<label for="tipo">Tipo de recurso</label>
+				<label for="tipo" style="all: unset;">Tipo de recurso</label>
 				<select class="form-control" id="tipo" name="tipo">
 					<option value="archivo">Archivo</option>
 					<option value="link">Link</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="materia">Materia</label>
+				<label for="materia" style="all: unset;">Materia</label>
 				<select class="form-control" id="materia" name="materia">
 					<?php
 					$statement = $conexion->prepare('SELECT IDMATERIA, NOMBREMATERIA FROM materia');
@@ -192,6 +199,10 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
 			<a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
 			</div>
 		</form>
+
+		</div>
+	</div>
+
 	</div>
 </body>
 

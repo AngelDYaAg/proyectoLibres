@@ -16,12 +16,18 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
   if (!empty($nombre)) {//verifica que exista el parametro nobmre
     $nombre = trim($nombre);//elimina espacios al principio y al final del nombre
   } else {
-    $errores .= 'ingrese el nombre del foro <br />';
+    $errores .= '<div class="alert alert-danger alert-dismissible">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Error!</strong> No ha ingresado el nombre del foro.
+                </div>';
   }
   if (!empty($descripcion)) {//verifica que exista el parametro descripcion
     $descripcion = trim($descripcion);//elimina espacios al principio y al final de descripcion
   } else {
-    $errores .= 'ingrese la descripcion del foro';
+    $errores .= '<div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> No ha ingresado la descripción del foro.
+                </div>';
   }
 
   if (empty($errores)) {
@@ -62,17 +68,21 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
 <body id="fondorepositorio">
   
   <div class="container">
-    
-
-
-      <div class="col-sm-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div style="text-align:center">
+        <h1>NUEVO FORO</h1>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col-sm-12">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"><!--enviar parametros por Post-->
           <div class="form-group">
-            <label for="inputNombre">Nombre del nuevo foro</label><!-- label Nombre -->
+            <label for="inputNombre" style="all: unset;">Nombre del nuevo foro</label><!-- label Nombre -->
             <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre del foro..."><!-- entrada del label Nombre -->
           </div>
           <div class="form-group">
-            <label for="inputDescripcion">Descripcion del foro</label><!-- label descripcion -->
+            <label for="inputDescripcion" style="all: unset;">Descripcion del foro</label><!-- label descripcion -->
             <textarea class="form-control" rows="5" id="inputDescripcion" name="inputDescripcion"></textarea><!-- entrada del label descripcion -->
           </div>
           <?php if(!empty($errores)): ?><!-- leer errores de nombre o descripcion -->
@@ -89,6 +99,11 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
           </div>
         </form>       
       </div>
+    </div>
+  </div>
+
+
+      
 
     
   </div>

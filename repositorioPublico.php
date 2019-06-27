@@ -33,45 +33,51 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
 <html lang="en">
 
 <head>
-  <?php
+    <?php
   require "cabecera.php";
   require "head.php";
   ?>
 </head>
 
 <body id="fondorepositorio">
-  
-  <div class="container">
 
-    <div class="row">
-      
-      <div class="col-sm-12 ">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="btn btn-primary" href="buscar.php" role="button">Buscar</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       
-        <div class="text-center">
-          <a class="btn btn-primary btn-lg" href="nuevoRecurso.php" role="button">Nuevo recurso público</a>
+    <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+          <div style="text-align:center">
+              <h1>REPOSITORIO PÚBLICO</h1>
+          </div>
         </div>
-        <br>
-        <br>
+      <div class="panel-body">
+        <div class="row">
 
-      </form>
-      <table>
+            <div class="col-sm-12 ">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-primary" href="buscar.php" role="button">Buscar</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <tr class="bg-primary">
-          <td width="10%"><strong>Nombre</strong></td>
-          <td width="10%"><strong>Descripcion</strong></td>
-          <td width="10%"><strong>Tipo</strong></td>
-          <td width="10%"><strong>Autor</strong></td>
-          <td width="10%"><strong>institucion</strong></td>
-          <td width="10%"><strong>Fecha creacion</strong></td>
-          <td width="10%"><strong>tamaño archivo</strong></td>
-          <td width="10%"><strong>tipo archivo</strong></td>
-          <td width="10%"><strong>Fecha ingreso</strong></td>
-          <td width="20%"><strong>Opciones</strong></td>
-        </tr>
-        <?php
+                <div class="text-center">
+                    <a class="btn btn-primary btn-lg" href="nuevoRecurso.php" role="button">Nuevo recurso público</a>
+                </div>
+                <br>
+                <br>
+
+                </form>
+                <table style="width:100%;" class="table table-striped">
+
+                    <tr class="bg-primary">
+                        <td width="10%"><strong>Nombre</strong></td>
+                        <td width="10%"><strong>Descripcion</strong></td>
+                        <td width="10%"><strong>Tipo</strong></td>
+                        <td width="10%"><strong>Autor</strong></td>
+                        <td width="10%"><strong>institucion</strong></td>
+                        <td width="10%"><strong>Fecha creacion</strong></td>
+                        <td width="10%"><strong>tamaño archivo</strong></td>
+                        <td width="10%"><strong>tipo archivo</strong></td>
+                        <td width="10%"><strong>Fecha ingreso</strong></td>
+                        <td width="20%"><strong>Opciones</strong></td>
+                    </tr>
+                    <?php
         foreach ($statement as $id) {
           $IDREPOSITORIO = $id["IDREPOSITORIO"];
           $NOMBRERECURSO = $id["NOMBRERECURSO"];
@@ -117,11 +123,15 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
 
         }
         ?>
-      </table>
+                </table>
+            </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-</div>
+        
+
+    </div>
 </body>
 
 </html>
