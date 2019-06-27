@@ -56,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <head>
   <?php
+  require "cabecera.php";
   require "head.php";
   ?>
 </head>
