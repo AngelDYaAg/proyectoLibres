@@ -11,12 +11,13 @@ foreach ($statement as $id) {
 }
 $IDFORO=(integer)$_GET['no']; // obtener el id del foro
 //$statement = $conexion->query("SELECT IDUSUARIO FROM usuario WHERE USER LIKE '$usuario'");
-$statement = $conexion->query("SELECT  NOMBREFORO, DESCRIPCIONFORO, NOMBREAUTORFORO, FECHA FROM foro WHERE IDFORO = $IDFORO");
+$statement = $conexion->query("SELECT  NOMBREFORO, DESCRIPCIONFORO, NOMBREAUTORFORO, FECHA, ARCHIVORUTA FROM foro WHERE IDFORO = $IDFORO");
 
 foreach ($statement as $id) {
   $NOMBREFORO=$id['NOMBREFORO'];
   $DESCRIPCIONFORO=$id['DESCRIPCIONFORO'];
   $NOMBREAUTORFORO=$id['NOMBREAUTORFORO'];
+  $ARCHIVORUTAFORO = $id["ARCHIVORUTA"];
   $FECHA=$id['FECHA'];
 }
 
@@ -85,9 +86,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
       </div>
       <div class="row" style="text-align:center;border-top-style: solid;border-top-color: darkgray;">
-        <h4 style="text-align:center;width:100%;">
-        Contenido:
-        </h4>
+        <h3 style="text-align:center;width:100%;">
+        Contenido del foro:
+        </h3>
       </div>
       <div class="row">
         <?php
@@ -95,7 +96,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ?>  
       
       </div>
-    </div>
+
+      
+
+      <?php
+        if(!is_null($ARCHIVORUTAFORO)){
+          echo '<div class="row">';
+          echo    '<div class="col-sm-12">';
+          echo      '<div class="text-center">';
+          echo        '<a class="btn btn-success" href="descargar_archivo_foro.php?no='.$IDFORO.'">';
+          echo          '<span class="glyphicon glyphicon-download"></span>';
+          echo            'Descargar archivo: '.explode('/',$ARCHIVORUTAFORO)[3];
+          echo        '</a>';
+          echo      '</div>';
+          echo    '</div>';
+          echo  '</div>';
+        }
+      ?>
+
+      <br>  
 
     
     <div class="panel-footer">
@@ -163,7 +182,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="modal-content">
 
         <div class="modal-header">
-          <div class="row">
+          <div class="row" style="width:100%;">
             <div class="col-md-10">
               <h4 class="modal-title" id="exampleModalLabel">Agregar comentario</h4>
             </div>

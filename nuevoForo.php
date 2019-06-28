@@ -45,7 +45,28 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
       $timezone  = -5; //(GMT -5:00) 
       $fecha= gmdate("Y/m/j H:i:s", time() + 3600*($timezone)); 
 			$statement = $conexion->query("INSERT INTO foro (NOMBREFORO,DESCRIPCIONFORO,IDAUTORFORO,NOMBREAUTORFORO,FECHA) VALUES ('$nombre','$descripcion',$IDUSUARIO,'$NOMBRECOMPLETO','$fecha')");
-			header('Location: foro.php');
+      $id_inserted=$conexion->lastInsertId();
+      $carpeta = "archivos/foros/$id_inserted";
+      if (!is_dir($carpeta)) {
+        mkdir($carpeta, 0777, true);
+      }
+
+      if (!file_exists($_FILES['inputArchivo']['tmp_name']) || !is_uploaded_file($_FILES['inputArchivo']['tmp_name'])){
+        // No hacer ninguna actualizacion si no hay archivo
+
+      }else{
+        //Copiar archivo subido a la carpeta del foro
+        $RUTARECURSO=$carpeta.'/'.$_FILES['inputArchivo']['name'];
+        copy($_FILES['inputArchivo']['tmp_name'], $RUTARECURSO);
+        $TIPOARCHIVO=$_FILES['inputArchivo']['type'];
+        //Actualizar en la base de datos la ubicacion del archivo del foro
+        $sql = "UPDATE foro SET ARCHIVORUTA='$RUTARECURSO', TIPOARCHIVO='$TIPOARCHIVO' WHERE IDFORO=$id_inserted";
+        $statement = $conexion->prepare($sql);
+        $statement->execute();
+      }
+
+
+      header('Location: foro.php');
 		} catch (Exception $e) {
 			echo "error: " . $e->getMessage();
 			
@@ -76,7 +97,7 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
     </div>
     <div class="panel-body">
       <div class="col-sm-12">
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"><!--enviar parametros por Post-->
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data"><!--enviar parametros por Post-->
           <div class="form-group">
             <label for="inputNombre" style="all: unset;">Nombre del nuevo foro</label><!-- label Nombre -->
             <input type="text" class="form-control" id="inputNombre" name="inputNombre" placeholder="Nombre del foro..."><!-- entrada del label Nombre -->
@@ -85,6 +106,10 @@ if(isset($_POST['submit'])){//verificar informacion enviada por POST
             <label for="inputDescripcion" style="all: unset;">Descripcion del foro</label><!-- label descripcion -->
             <textarea class="form-control" rows="5" id="inputDescripcion" name="inputDescripcion"></textarea><!-- entrada del label descripcion -->
           </div>
+          <div class="form-group">
+            <label for="inputArchivo" style="all: unset;">Adjuntar archivo: (opcional)</label>
+				    <input class="form-control" id="inputArchivo" name="inputArchivo" type="file" size=4>
+			    </div>
           <?php if(!empty($errores)): ?><!-- leer errores de nombre o descripcion -->
             <div class="alert error">
               <?php echo $errores; ?>

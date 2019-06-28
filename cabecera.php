@@ -3,12 +3,20 @@
 <div class="row" style="width:100%">
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;width:100%;">
 	<div class="row" style="width:100%;">
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<a class="navbar-brand" href="#">CENTRO DE APRENDIZAJE COLABORATIVO – EPN</a>
+				<div class="row">
+					<div class="col-md-1">
+						<img src="ImagesCSS/EPN.png" alt="EPN logo"  height="60px">
+					</div>
+					<div class="col-md-11">
+						<h3>CENTRO DE APRENDIZAJE COLABORATIVO – EPN</h3>
+					</div>
+				</div>
+				
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-5">
 				<a class="btn btn-outline-primary btn-lg"  href="repositorio.php" >Repositorio personal</a>
 				<a class="btn btn-outline-primary btn-lg"  href="repositorioPublico.php">Repositorio público</a>
 				<a class="btn btn-outline-primary btn-lg" href="foro.php">Foro</a>
