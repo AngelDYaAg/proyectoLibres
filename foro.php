@@ -40,7 +40,7 @@ $statement = $conexion->query("SELECT IDFORO, NOMBREFORO, DESCRIPCIONFORO, IDAUT
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-center">
-                            <a class="btn btn-primary btn-lg" href="nuevoForo.php" role="button">Nuevo Tema</a>
+                            <a class="btn btn-primary btn-lg" href="nuevoForo.php" role="button">Nuevo Foro</a>
                         </div>
                         <div class="row" style="padding:20px;">
                             <table style="width:100%;" class="table table-striped">

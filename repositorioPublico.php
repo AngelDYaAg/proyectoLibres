@@ -57,7 +57,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <div class="text-center">
-                    <a class="btn btn-primary btn-lg" href="nuevoRecurso.php" role="button">Nuevo recurso público</a>
+                    <a class="btn btn-primary btn-lg" href="nuevoRecurso.php" role="button">Nuevo recurso</a>
                 </div>
                 <br>
                 <br>
