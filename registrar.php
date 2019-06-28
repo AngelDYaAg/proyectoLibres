@@ -90,17 +90,25 @@ if(isset($_POST['submit'])){
 
 <body id="fondonuevorepositorio">
   <div class="containerLogininicio">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+                <div style="text-align:center">
+                    <h1>REGISTRO</h1>
+                </div>
+      </div>
+    <div class="panel-body">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
       <div class="form-group">
-        <label for="inputCedula">Cedula</label>
+        <label for="inputCedula" style="all: unset;">Cedula</label>
         <input class="form-control" id="inputCedula" name="inputCedula" type="text" placeholder="Ingresar numero de cedula">
       </div>
       <div class="form-group">
-        <label for="inputNombres">Nombres</label>
+        <label for="inputNombres" style="all: unset;">Nombres</label>
         <input class="form-control" id="inputNombres" name="inputNombres" type="text" placeholder="Ingresar nombres">
       </div>
       <div class="form-group">
-        <label for="inputApellidos">Apellidos</label>
+        <label for="inputApellidos" style="all: unset;">Apellidos</label>
         <input class="form-control" id="inputApellidos" name="inputApellidos" type="text" placeholder="Ingresar apellidos">
       </div>
       <div class="form-group">
@@ -121,6 +129,9 @@ if(isset($_POST['submit'])){
         <a class="btn btn-danger btn-block" href="index.php">Cancelar</a>
       </div>
     </form>
+    </div>
+  </div>
+    
   </div>
 </body>
 
