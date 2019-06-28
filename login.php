@@ -84,6 +84,14 @@ if(isset($_POST['submit'])){
 <body id="fondologin">
   <!--Cuerpo de la página -->
   <div class="containerLogininicio"> <!-- Contenedor de la página de login -->
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+                <div style="text-align:center">
+                    <h1>INICIAR SESIÓN</h1>
+                </div>
+    </div>
+    <div class="panel-body">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post"> <!-- método POST -->
       <div class="form-group">
         <select class="form-control" id="userType" name="userType"> <!-- Genera un combobox con las opciones de Administrador, Profesor, Estudiante -->
@@ -94,12 +102,12 @@ if(isset($_POST['submit'])){
       </div>
       <div class="form-group">
         <br>
-        <label for="inputUser" class="usuarioLogin">Usuario</label> <!-- Etiqueta de entrada para el texto de usuario -->
+        <label for="inputUser" class="usuarioLogin" style="all: unset;">Usuario</label> <!-- Etiqueta de entrada para el texto de usuario -->
         <input class="form-control" id="inputUser" name="inputUser" type="text" placeholder="Ingresar Usuario"> <!-- Entrada del label de usuario -->
       </div>
       <div class="form-group">
         <br>
-        <label for="inputPW" class="usuarioLogin">Contraseña</label> <!-- Etiqueta de entrada para el texto de password -->
+        <label for="inputPW" class="usuarioLogin" style="all: unset;">Contraseña</label> <!-- Etiqueta de entrada para el texto de password -->
         <input class="form-control" id="inputPW" name="inputPW" type="password" placeholder="Ingresar Contraseña"><!-- Entrada del label de password -->
       </div>
 
@@ -119,6 +127,9 @@ if(isset($_POST['submit'])){
       <a class="btn btn-danger btn-block" href="index.php">Cancelar</a> <!-- Boton de Cancelar -->
 
     </form> <!-- Cerrar formulario -->
+    </div>
+  </div>
+    
 
   </div>
 </div> <!-- cerrar contenedor -->
