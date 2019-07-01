@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2019 a las 02:04:57
+-- Tiempo de generación: 01-07-2019 a las 02:43:29
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -67,13 +67,35 @@ CREATE TABLE `comentario` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario_foro`
+--
+
+CREATE TABLE `comentario_foro` (
+  `IDCOMENTARIO` int(11) NOT NULL,
+  `IDFORO` int(11) DEFAULT NULL,
+  `IDUSUARIO` int(11) DEFAULT NULL,
+  `NOMBREAUTORCOMENTARIO` varchar(45) DEFAULT NULL,
+  `CONTENIDO` varchar(256) DEFAULT NULL,
+  `FECHA` datetime DEFAULT NULL,
+  `ARCHIVORUTA` varchar(256) DEFAULT NULL,
+  `TIPOARCHIVO` varchar(256) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `foro`
 --
 
 CREATE TABLE `foro` (
   `IDFORO` int(11) NOT NULL,
   `NOMBREFORO` char(100) NOT NULL,
-  `DESCRIPCIONFORO` char(250) NOT NULL
+  `DESCRIPCIONFORO` text NOT NULL,
+  `IDAUTORFORO` int(11) DEFAULT NULL,
+  `NOMBREAUTORFORO` varchar(60) DEFAULT NULL,
+  `FECHA` datetime DEFAULT NULL,
+  `ARCHIVORUTA` varchar(256) DEFAULT NULL,
+  `TIPOARCHIVO` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -194,10 +216,17 @@ ALTER TABLE `comentario`
   ADD KEY `FK_RELATIONSHIP_6` (`IDUSUARIO`);
 
 --
+-- Indices de la tabla `comentario_foro`
+--
+ALTER TABLE `comentario_foro`
+  ADD PRIMARY KEY (`IDCOMENTARIO`);
+
+--
 -- Indices de la tabla `foro`
 --
 ALTER TABLE `foro`
-  ADD PRIMARY KEY (`IDFORO`);
+  ADD PRIMARY KEY (`IDFORO`),
+  ADD KEY `fk_foro_usuario_idx` (`IDAUTORFORO`);
 
 --
 -- Indices de la tabla `lista`
@@ -250,6 +279,12 @@ ALTER TABLE `comentario`
   MODIFY `IDCOMENTARIO` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `comentario_foro`
+--
+ALTER TABLE `comentario_foro`
+  MODIFY `IDCOMENTARIO` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
@@ -289,6 +324,12 @@ ALTER TABLE `usuario`
 ALTER TABLE `comentario`
   ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`IDFORO`) REFERENCES `foro` (`IDFORO`),
   ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`IDUSUARIO`) REFERENCES `usuario` (`IDUSUARIO`);
+
+--
+-- Filtros para la tabla `foro`
+--
+ALTER TABLE `foro`
+  ADD CONSTRAINT `fk_foro_usuario` FOREIGN KEY (`IDAUTORFORO`) REFERENCES `usuario` (`IDUSUARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `materia`

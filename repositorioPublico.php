@@ -26,7 +26,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
   echo "CLAVE: $CLAVE";
   $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'privado' AND PALABRASCLAVERECURSO = '$CLAVE' AND IDUSUARIO = $usuario");
 }else{
-  $statement = $conexion->query("SELECT IDREPOSITORIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'publico'");
+  $statement = $conexion->query("SELECT IDREPOSITORIO,IDUSUARIO,NOMBRERECURSO,DESCRIPCIONRECURSO,TIPORECURSO,AUTORRECURSO,INSTAUTORRECURSO,FECHACREACIONRECURSO,TIPOARCHIVO,SIZERECURSO FROM recurso WHERE ESTADORECURSO LIKE 'publico'");
 }
 ?>
 <!DOCTYPE html>
@@ -80,6 +80,7 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
                     <?php
         foreach ($statement as $id) {
           $IDREPOSITORIO = $id["IDREPOSITORIO"];
+          $IDUSUARIO = $id["IDUSUARIO"];
           $NOMBRERECURSO = $id["NOMBRERECURSO"];
           $DESCRIPCIONRECURSO = $id["DESCRIPCIONRECURSO"];
           $TIPORECURSO = $id["TIPORECURSO"];
@@ -103,19 +104,24 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
           echo "<td>$FECHACREACIONRECURSO</td>";
           echo '<td>';             
           echo '<div class="dropdown">';
-          // echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar';
-          // echo '<span class="caret"></span>';
-          // echo '</button>';
-          // echo '<ul class="dropdown-menu">';
-          // echo '<li><a href="#">1</a></li>';
-          // echo '<li><a href="#">2</a></li>';
-          // echo '<li><a href="#">3</a></li>';
-          // echo '<li><a href="#">4</a></li>';
-          // echo '<li><a href="#">5</a></li>';
-          // echo '</ul>';
-          
-          echo " ";
+          if($usuario!=$IDUSUARIO&&$usuario!=1){
+          echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Calificar';
+          echo '<span class="caret"></span>';
+          echo '</button>';
+          echo '<ul class="dropdown-menu">';
+          echo '<li><a href="#">1</a></li>';
+          echo '<li><a href="#">2</a></li>';
+          echo '<li><a href="#">3</a></li>';
+          echo '<li><a href="#">4</a></li>';
+          echo '<li><a href="#">5</a></li>';
+          echo '</ul>';
+          }
+          //echo " ";
           echo '<a class="btn btn-warning" href="descargar.php?iddescargar='.$IDREPOSITORIO.'">Descargar</a>';
+          if($usuario==$IDUSUARIO||$usuario==1){
+                echo '<a type="button" class="btn btn-danger" href="eliminar.php?no='.$IDREPOSITORIO.'">Eliminar</a>' ;
+
+              }
 
           echo '</div>';
           echo '</td>';
