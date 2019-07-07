@@ -4,6 +4,11 @@
 * \n pagina principal en la cual se encuentra iniciar sesion
 *
 */
+
+/**
+ *  A login class.
+ */
+
 if(isset($_SESSION['usuario'])){ 
   header('Location: repositorio.php');
 }
