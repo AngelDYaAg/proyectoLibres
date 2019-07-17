@@ -79,7 +79,8 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
           echo "<td>$APELLIDO</td>";
           echo "<td>$ESTADO</td>";
         
-          echo '<td>';             
+          echo '<td>';  
+          if($IDUSUARIO!=1){           
           echo '<div class="dropdown">';
           echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Estado';
           echo '<span class="caret"></span>';
@@ -89,6 +90,8 @@ if(isset($_POST['autor'])&&!empty($_POST['autor'])) {
           echo '<li><a href="bloquear.php?no='.$IDUSUARIO.'">Bloqueado</a></li>';
           echo '</ul>';
           echo '</div>';
+          echo '<a class="btn btn-danger" href="eliminarUsuario.php?no='.$IDUSUARIO.'">Eliminar</a>';
+          }
           echo '</td>';
           echo "</tr>";
 
